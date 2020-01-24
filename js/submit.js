@@ -23,18 +23,40 @@ cvUpload.addEventListener('submit', (e) => {
     console.log(phone);
     console.log(AResume);
     console.log(VResume);
-    var storageRef = store.ref('audio-CV/' + AResume.name)
-    var task = storageRef.put(AResume)
+
+    videoResume = 'video-CV/' + Date.now() + email;
+    audioResume = 'audio-CV/' + Date.now() + email;
+    var audioStorageRef = firebase.storage().ref(audioResume)
+    var task = audioStorageRef.put(AResume)
     task.on('state_changed',
-        function error(err){
+        function error(err) {
             console.log(err);
         },
-        function complete(){
+        function complete() {
             console.log("success");
         }
-)
+    )
+    var videoStorageRef = firebase.storage().ref(videoResume)
 
+    task = videoStorageRef.put(AResume)
+    task.on('state_changed',
+        function error(err) {
+            console.log(err);
+        },
+        function complete() {
+            console.log("success");
+        }
+    )
 
+    db.collection('CV').add({
+        name: name,
+        email: email,
+        phoneNo: phone,
+        audioResume: audioResume,
+        videoResume: videoResume
+    }).then(res=>{
+        console.log(res)
+    })
 
 
 })
