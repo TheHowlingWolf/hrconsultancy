@@ -10,7 +10,7 @@ jobDet.addEventListener('submit', (e) => {
     var jexperience = jobDet["jexperience"].value;
     var jaddress = jobDet["jaddress"].value;
 
-    var jresponsibility = jobDet["jresponsibility"].value;
+    var jresponsibility = jobDet["jresponsibility"].value.replace(/\n\r?/g, '<br />');
 
     db.collection("job").add({
         title: jtitle,
@@ -24,6 +24,6 @@ jobDet.addEventListener('submit', (e) => {
         responsiblity:jresponsibility
     }).then(ref=>{
         console.log(ref.id);
-        console.log("success");
+        window.location.assign('./index.html')
     })
 })
