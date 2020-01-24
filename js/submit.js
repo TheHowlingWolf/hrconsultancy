@@ -54,9 +54,11 @@ cvUpload.addEventListener('submit', (e) => {
         phoneNo: phone,
         audioResume: audioResume,
         videoResume: videoResume
-    }).then(res=>{
-        console.log(res)
-    })
+    }).then(ref=>{
+        console.log("added");
+        console.log(ref.data());
+        
+    }).catch(err=>console.log(JSON.stringify(err)));
 
 
 })
