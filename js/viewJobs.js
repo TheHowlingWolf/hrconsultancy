@@ -7,21 +7,21 @@ if (jobView) {
         .get()
         .then(snapshot => {
             snapshot.forEach(doc => {
-                console.log(doc);
+                console.log(doc.data());
                 jobView.innerHTML += `
                 <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card text-white bg-info mb-3" style="max-width: 20rem; ">
-                            <div class="card-header">${doc.data().title}</div>
+                            <div class="card-header font-weight-bold">${doc.data().title}</div>
                             <div class="card-body">
                               <h5 class="card-title">
                                 <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline"
                                     style="color: #3fcdc7;"></i></div>
-                                  {Job Company Name}
+                                  HR CONSULTANCY
                               </h5>
                               <p class="card-text">
                                 <span class="badge bg-light text-info">${doc.data().type}</span>
-                                  <br />{Description}</p>
-                              <div class="card-footer">
+                                  <br />${doc.data().responsiblity.truncate(50)}</p>
+                              <div class="card-footer"> 
                                 <div class="apply">
                                     <div class="details" style="font-size: 15px;">
                                     ${doc.data().location}<br />,${new Date(doc.data().lastDate).toDateString()}<br />,${doc.data().position}
@@ -42,6 +42,13 @@ if (jobView) {
 
 }
 
+
+String.prototype.truncate = function (n) {
+  if (this.length > n) {
+    return this.substr(0, n - 1) + "...";
+  }
+  return this;
+};
 
 
 function viewDetails(jobId) {
