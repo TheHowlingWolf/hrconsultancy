@@ -62,12 +62,11 @@
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="../index.html#intro">Home</a></li>
-                    <li><a href="../index.html#about">About Us</a></li>
-                    <li><a href="../index.html#services">Services</a></li>
-                    <li><a href="../pages/openings.html">Current Opennings</a></li>
-
-                    <!--  <li class="drop-down"><a href="">Drop Down</a>
+                    <li class="active"><a href="../pages/superadmin.html">Home</a></li>
+                    <li><a href="#footer">Contact Us</a></li>
+                    <li><button class="btn btn-md btn-info mt-1 p-1" onclick="settings()"><i class="fa fa-cog"></i><b> Settings</b></button></li>
+                    
+                   <!--  <li class="drop-down"><a href="">Drop Down</a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
                             <li class="drop-down"><a href="#">Drop Down 2</a>
@@ -84,7 +83,6 @@
                             <li><a href="#">Drop Down 5</a></li>
                         </ul>
                     </li> -->
-                    <li><a href="#footer">Contact Us</a></li>
                 </ul>
             </nav><!-- .main-nav -->
 
@@ -97,7 +95,7 @@
 
 
     <main id="main" class="">
-
+        
         <section id="intro" class="wow bounceInUp">
             <div class="container d-flex h-100 text-center">
                 <div class="row justify-content-center align-items-center w-100">
@@ -147,97 +145,99 @@
                                 class="login-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2">
                         </form>
                     </div>
+                </div>
+            </div>
+        </section>
 
 
-                    <!-- signup form here -->
-                    <!-- <div class="col align-self-center">
-                        <div class="h1 text-info">signup</div>
-                        <p class="lead text-info">Fill the form below</p>
-                        <p class="lgerror lead text-dark font-weight-bold mt-2 bg-info text-center"></p>
-                        <form class="form" method="POST" id="siteSignUp">
-                            <div class="form-group">
-                                <div class="input-group input-group-lg">
-                                    <div class="container text-center">
-                                        <div class="row w-100">
-                                            <div class="col-2"></div>
-                                            <div class="col-2 w-100 text-right">
-                                                <span class="input-group-addon"><i
-                                                        class="fa fa-id-badge fa-2x pt-2"></i></span>
-                                            </div>
-                                            <div class="col-6 w-100">
-                                                <input name="name" type="text" class="form-control rounded"
-                                                    id="name" placeholder="name">
-                                            </div>
-                                            <div class="col-2"></div>
-                                        </div>
-                                    </div>
-                                </div>
+        <section class="settings-menu d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <img src="../img/security_1.png" alt="" srcset="" width="25%">
                             </div>
-                            
-                            <div class="form-group">
-                                <div class="input-group input-group-lg">
-                                    <div class="container text-center">
-                                        <div class="row w-100">
-                                            <div class="col-2"></div>
-                                            <div class="col-2 w-100 text-right">
-                                                <span class="input-group-addon"><i
-                                                        class="fa fa-id-badge fa-2x pt-2"></i></span>
-                                            </div>
-                                            <div class="col-6 w-100">
-                                                <input name="phone" type="number" class="form-control rounded"
-                                                    id="phone" placeholder="Phone Number">
-                                            </div>
-                                            <div class="col-2"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-12">
+                                <button class="lg-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2"
+                                onclick="updatePass();">Update Password</button>
                             </div>
-
-                            <div class="form-group">
-                                <div class="input-group input-group-lg">
-                                    <div class="container text-center">
-                                        <div class="row w-100">
-                                            <div class="col-2"></div>
-                                            <div class="col-2 w-100 text-right">
-                                                <span class="input-group-addon"><i
-                                                        class="fa fa-id-badge fa-2x pt-2"></i></span>
-                                            </div>
-                                            <div class="col-6 w-100">
-                                                <input name="email" type="email" class="form-control rounded"
-                                                    id="email" placeholder="Username">
-                                            </div>
-                                            <div class="col-2"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-12">
+                                <button class="lg-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2"
+                                onclick="authPass();">Update User Associate Key</button>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group input-group-lg">
-                                    <div class="container text-center">
-                                        <div class="row w-100">
-                                            <div class="col-2"></div>
-                                            <div class="col-2 w-100 text-right">
-                                                <span class="input-group-addon"><i
-                                                        class="fa fa-lock fa-2x pt-2"></i></span>
-                                            </div>
-                                            <div class="col-6 w-100 ">
-                                                <input name="password" type="password"
-                                                    class="form-control rounded" id="password"
-                                                    placeholder="Password">
-                                            </div>
-                                            <div class="col-2"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <button id="close-btn" class="btn btn btn-transparent text-info m-2 p-0"
+                                onclick="back()"><i class="fa fa-arrow-circle-left p-1"></i>Back To Admin Panel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="settings-menu-updatepass d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <img src="../img/security_2.png" alt="" srcset="" width="25%">
                             </div>
-
-
-                            <input type="submit"
-                                class="login-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2">
-                        </form>
-                    </div> -->
-                    <!-- Signup Form ends here -->
-                
+                            <div class="col-12">
+                                <p class="pass-error lead text-dark font-weight-bold mt-2 bg-info text-center"></p>
+                                    <input name="updatePass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="updatePass" placeholder="Enter New Password">
+                            </div>
+                            <div class="col-12">
+                                
+                                    <input name="oldPass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="oldPass" placeholder="Enter Old Password">
+                            </div>
+                            <div class="col-12">
+                                <input type="submit"
+                                class="update-pass-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2">
+                            </div>
+                            <button id="close-btn" class="btn btn btn-transparent text-info m-2 p-0"
+                                onclick="setBack()"><i class="fa fa-arrow-circle-left p-1"></i>Back To Settings Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="settings-menu-updateauth d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <img src="../img/security_3.png" alt="" srcset="" width="25%">
+                            </div>
+                            <div class="col-12">
+                                <p class="auth-error lead text-dark font-weight-bold mt-2 bg-info text-center"></p>
+                                    <input name="updatePass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="authUpdatePass" placeholder="Enter New Authentication Password">
+                            </div>
+                            <div class="col-12">
+                                
+                                    <input name="oldPass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="authOldPass" placeholder="Enter Old Authentication Password">
+                            </div>
+                            <div class="col-12">
+                                <input type="submit"
+                                class="update-auth-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2">
+                            </div>
+                            <button id="close-btn" class="btn btn btn-transparent text-info m-2 p-0"
+                                onclick="setBack()"><i class="fa fa-arrow-circle-left p-1"></i>Back To Settings Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="con-reg d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <img src="../img/tick.png" alt="" srcset="" width="25%">
+                        <h1 class="display-4 font-weight-bold"> Successfully Updated!</h1>
+                    </div>
                 </div>
             </div>
         </section>
@@ -247,7 +247,7 @@
     Footer
   ============================-->
     <footer id="footer" class="section-bg">
-        <div class="footer-top">
+        <!-- <div class="footer-top">
             <div class="container">
 
                 <div class="row">
@@ -351,9 +351,6 @@
                                 <div class="text-center"><button type="submit" title="Send Message">Send
                                         Message</button></div>
                             </form>
-
-
-
                         </div>
 
                     </div>
@@ -364,7 +361,7 @@
 
             </div>
         </div>
-
+ -->
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
@@ -411,6 +408,8 @@
     <script src="../js/firebase.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/jobDetail.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/superAdmin.js"></script>
 </body>
 
 </html>

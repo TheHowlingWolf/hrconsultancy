@@ -1,50 +1,52 @@
+/* 
+//signup
+const site = document.getElementById('siteSignUp');
+site.addEventListener('submit', (e) => {
+    //preventing default refresh
+    e.preventDefault();
+    console.log('submit');
 
-// //signup
-// const site = document.getElementById('siteSignUp');
-// site.addEventListener('submit', (e) => {
-//     //preventing default refresh
-//     e.preventDefault();
+    //get user info
+    const siteName = site['sitename'].value;
+    const email = site['email'].value;
+    const password = site['password'].value;
+    const devId = site['devId'].value;
+    const adminAccess = false;
+    console.log(email);
+    //console.log(siteName+'\n'+devId+'\n'+password);
 
-//     //get user info
+    //signup the user using firebase
+    auth.createUserWithEmailAndPassword(email, password)
+        .then(cred => {
+            //  console.log(cred.user.uid);
+            document.querySelector('.Register').classList.add('d-none');
+            document.querySelector('.con-reg').classList.remove('d-none');
+            setTimeout((time) => {
+                site.reset();
+                auth.signOut().then(() => {
+                    document.querySelector('.login').classList.remove('d-none');
+                    document.querySelector('.intro').classList.add('d-none');
+                    document.querySelector('.Register').classList.add('d-none');
+                    document.querySelector('.con-reg').classList.add('d-none');
+                    document.querySelector('.register-nav').style.borderBottom = '0px solid #ffc107';
+                    document.querySelector('.home-nav').style.borderBottom = '0px solid #ffc107';
+                    document.querySelector('.login-nav').style.borderBottom = '2px solid #ffc107';
+                    db.collection('UserProfile').add({
+                        uid: cred.user.uid,
+                        siteName: siteName,
+                        deviceId: devId,
+                        adminAccess: adminAccess
+                    });
+                })
+            }, 2000);
+        }).catch(function (error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
 
+            document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
 
-//     const email = site['email'].value;
-//     const password = site['password'].value;
-//     const name = site['name'].value;
-//     const phoneNo = site['phone'].value;
-//     const adminAccess = true;
-//     const superAdminAccess = false;
-
-//     console.log(email);
-//     console.log(password);
-//     console.log(name);
-//     console.log(phoneNo);
-//     console.log(adminAccess);
-//     console.log(superAdminAccess);
-//     //signup the user using firebase
-//     auth.createUserWithEmailAndPassword(email, password)
-//         .then(cred => {
-//             console.log(cred.user.uid);
-
-//             db.collection('UserProfile').add({
-//                 uid: cred.user.uid,
-//                 name:name,
-//                 phone: phoneNo,
-//                 adminAccess: adminAccess,
-//                 superAdminAccess: superAdminAccess
-//             }).then(res=>{
-//                 console.log("done");
-//             });
-//             site.reset();
-//         }).catch(function (error) {
-//             var errorCode = error.code;
-//             var errorMessage = error.message;
-// console.log(errorMessage);
-//             // document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
-
-//         });
-
-// });
+        });
+}); */
 
 //login users
 const Login = document.querySelector('#login-form');
@@ -57,26 +59,24 @@ Login.addEventListener('submit', (e) => {
 
     auth.signInWithEmailAndPassword(lg_email, lg_pass)
         .then((cred) => {
+            document.querySelector('.lgerror').innerHTML = '';
             Login.reset();
+            setTimeout((time) => {
+                auth.onAuthStateChanged(function (user) {
+                    db.collection('UserProfile').where('uid','==',user.uid).get().then((snapshot)=>{
+                        var adminCheck = snapshot.docs[0].data().superAdminAccess;
+                        console.log(adminCheck);
 
-            auth.onAuthStateChanged(function (user) {
-                db.collection('UserProfile').where('uid', '==', user.uid).get().then((snapshot) => {
-                    var adminCheck = snapshot.docs[0].data().adminAccess;
-                    var superAdminCheck = snapshot.docs[0].data().superAdminAccess;
-
-
-                    if (superAdminCheck) {
-                        window.location.assign('superAdmin.html');
-                    }
-                    else if (adminCheck) {
-                        window.location.assign('admin.html');
-                    }
-                    else {
-                        window.location.assign('user.html');
-                    }
+                        if (adminCheck) {
+                            window.location.assign('../pages/superadmin.html');
+                        }
+                        else
+                        { 
+                            window.location.assign('../pages/admin.html');
+                        }
+                   })
                 })
-            })
-
+            }, 2000);
         })
         .catch(function (error) {
             var errorCode = error.code;
