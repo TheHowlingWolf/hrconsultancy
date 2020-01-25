@@ -5,15 +5,15 @@
     (async function updateAuthPass(){
         var newAuthKey = document.getElementById('authUpdatePass').value;
         var oldAuthKey = document.getElementById('authOldPass').value;
-        var adminKey;
-        await db.collection("ticketsCount").get().then((snapshot)=>{
-            adminKey=snapshot.docs[0].data().adminKey;   
+        var authKey;
+        await db.collection("keys").get().then((snapshot)=>{
+            authKey=snapshot.docs[0].data().authkey;   
         });
 
-            if(adminKey === oldAuthKey && oldAuthKey !== newAuthKey && newAuthKey!= "" && oldAuthKey!=="")
+            if(authKey === oldAuthKey && oldAuthKey !== newAuthKey && newAuthKey!= "" && oldAuthKey!=="")
             {
-                await db.collection("ticketsCount").doc("8Wb4NtiBXO8coiKwRTW7")
-                .update({ adminKey: newAuthKey });
+                await db.collection("keys").doc("xRpSnfZrEZAOsJKkS71c")
+                .update({ authkey: newAuthKey });
 
                 document.querySelector('.con-reg').classList.remove('d-none');
                 document.querySelector(".settings-menu-updateauth").classList.add("d-none");
@@ -23,7 +23,7 @@
                 },2000);
 
             }
-            else if ( adminKey !== oldAuthKey)
+            else if ( authKey !== oldAuthKey)
             {
                 document.querySelector('.auth-error').innerHTML = `OPPS! Old Auth Key Doesn't Match`;
             }
@@ -35,13 +35,6 @@
             {
                 document.querySelector('.auth-error').innerHTML = `OPPS! Please Fill The Fields`;
             }
-          })
-          .catch(function(error) {
-            var errorMessage = error.message;
-                    document.querySelector('.auth-error').textContent = `OPPS! ${errorMessage}`;
-          }); 
-
-            
     })();
     
   });
