@@ -59,15 +59,13 @@ Login.addEventListener('submit', (e) => {
 
     auth.signInWithEmailAndPassword(lg_email, lg_pass)
         .then((cred) => {
-            document.querySelector('.login').classList.add('d-none');
-            document.querySelector('.con-log').classList.remove('d-none');
             document.querySelector('.lgerror').innerHTML = '';
             Login.reset();
             setTimeout((time) => {
                 auth.onAuthStateChanged(function (user) {
                     db.collection('UserProfile').where('uid','==',user.uid).get().then((snapshot)=>{
-                        var adminCheck = snapshot.docs[0].data().adminAccess;
-                        console.log(superAdminAccess);
+                        var adminCheck = snapshot.docs[0].data().superAdminAccess;
+                        console.log(adminCheck);
 
                         if (adminCheck) {
                             window.location.assign('../pages/superadmin.html');
