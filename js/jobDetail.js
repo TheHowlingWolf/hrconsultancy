@@ -25,5 +25,14 @@ var s = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '
 
             </p>
 
-        </div>`
+        </div>
+        <button class="btn btn-outline-info" onclick="applyJob('${jobDet.id}')">Apply for this job</button>
+        `
     })
+
+
+
+    function applyJob(jobid){
+        
+    }
+
