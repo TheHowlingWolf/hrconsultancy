@@ -62,11 +62,10 @@
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="../index.html#intro">Home</a></li>
-                    <li><a href="../index.html#about">About Us</a></li>
-                    <li><a href="../index.html#services">Services</a></li>
-                    <li><a href="../pages/openings.html">Current Opennings</a></li>
-                    <li><a href="../pages/jobpost.html">Post a Job</a></li>
+                    <li class="active"><a href="../pages/superadmin.html">Home</a></li>
+                    <li><a href="#footer">Contact Us</a></li>
+                    <li><button class="btn btn-md btn-info mt-1 p-1" onclick="settings()"><i class="fa fa-cog"></i><b> Settings</b></button></li>
+                    
                    <!--  <li class="drop-down"><a href="">Drop Down</a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -84,7 +83,6 @@
                             <li><a href="#">Drop Down 5</a></li>
                         </ul>
                     </li> -->
-                    <li><a href="#footer">Contact Us</a></li>
                 </ul>
             </nav><!-- .main-nav -->
 
@@ -97,7 +95,7 @@
 
 
     <main id="main" class="">
-
+        
         <section id="intro" class="wow bounceInUp">
             <div class="container d-flex h-100 text-center">
                 <div class="row justify-content-center align-items-center w-100">
@@ -150,13 +148,106 @@
                 </div>
             </div>
         </section>
+
+
+        <section class="settings-menu d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <img src="../img/security_1.png" alt="" srcset="" width="25%">
+                            </div>
+                            <div class="col-12">
+                                <button class="lg-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2"
+                                onclick="updatePass();">Update Password</button>
+                            </div>
+                            <div class="col-12">
+                                <button class="lg-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2"
+                                onclick="authPass();">Update User Associate Key</button>
+                            </div>
+                            <button id="close-btn" class="btn btn btn-transparent text-info m-2 p-0"
+                                onclick="back()"><i class="fa fa-arrow-circle-left p-1"></i>Back To Admin Panel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="settings-menu-updatepass d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <img src="../img/security_2.png" alt="" srcset="" width="25%">
+                            </div>
+                            <div class="col-12">
+                                <p class="pass-error lead text-dark font-weight-bold mt-2 bg-info text-center"></p>
+                                    <input name="updatePass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="updatePass" placeholder="Enter New Password">
+                            </div>
+                            <div class="col-12">
+                                
+                                    <input name="oldPass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="oldPass" placeholder="Enter Old Password">
+                            </div>
+                            <div class="col-12">
+                                <input type="submit"
+                                class="update-pass-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2">
+                            </div>
+                            <button id="close-btn" class="btn btn btn-transparent text-info m-2 p-0"
+                                onclick="setBack()"><i class="fa fa-arrow-circle-left p-1"></i>Back To Settings Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="settings-menu-updateauth d-none wow bounceInUp">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                <img src="../img/security_3.png" alt="" srcset="" width="25%">
+                            </div>
+                            <div class="col-12">
+                                <p class="auth-error lead text-dark font-weight-bold mt-2 bg-info text-center"></p>
+                                    <input name="updatePass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="authUpdatePass" placeholder="Enter New Authentication Password">
+                            </div>
+                            <div class="col-12">
+                                
+                                    <input name="oldPass" type="password" class="form-control rounded w-50 mt-2 d-inline"
+                                                    id="authOldPass" placeholder="Enter Old Authentication Password">
+                            </div>
+                            <div class="col-12">
+                                <input type="submit"
+                                class="update-auth-btn btn btn-lg btn-outline-info btn-info text-light mt-3 mx-2">
+                            </div>
+                            <button id="close-btn" class="btn btn btn-transparent text-info m-2 p-0"
+                                onclick="setBack()"><i class="fa fa-arrow-circle-left p-1"></i>Back To Settings Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="con-reg d-none">
+            <div class="container d-flex h-100 text-center">
+                <div class="row justify-content-center align-items-center w-100">
+                    <div class="col align-self-center">
+                        <img src="./check.png" alt="" srcset="" width="25%">
+                        <h1 class="display-4 font-weight-bold"> Successfully Updated!</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!--==========================
     Footer
   ============================-->
     <footer id="footer" class="section-bg">
-        <div class="footer-top">
+        <!-- <div class="footer-top">
             <div class="container">
 
                 <div class="row">
@@ -270,7 +361,7 @@
 
             </div>
         </div>
-
+ -->
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
@@ -317,6 +408,7 @@
     <script src="../js/firebase.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/jobDetail.js"></script>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>

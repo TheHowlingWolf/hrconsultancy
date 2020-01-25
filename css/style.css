@@ -1590,3 +1590,17 @@ h6 {
     margin-bottom: 25px;
   }
 }
+
+/*////////////////////////////////////////////////////////////
+                ADMIN
+/////////////////////////////////////////////////////////////*/
+
+.settings-menu{
+  height: 100vh;
+}
+.settings-menu-updatepass{
+  height: 100vh;
+}
+.settings-menu-updateauth{
+  height: 100vh;
+}
