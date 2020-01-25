@@ -15,5 +15,7 @@ firebase.analytics();
 //make auth and firestore references
 const auth = firebase.auth();
 const db = firebase.firestore();
-console.log(db);
 
+
+
+var jobDet;
