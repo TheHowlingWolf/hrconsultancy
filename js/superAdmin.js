@@ -6,25 +6,26 @@
         var newAuthKey = document.getElementById('authUpdatePass').value;
         var oldAuthKey = document.getElementById('authOldPass').value;
         var adminKey;
-        user = auth.getUser('DUDhr2PhSggljhZgaSAle75YDgv1');
+        await db.collection("ticketsCount").get().then((snapshot)=>{
+            adminKey=snapshot.docs[0].data().adminKey;   
+        });
 
-        var credential = firebase.auth.EmailAuthProvider.credential(user.email, oldAuthKey);
-        await user.reauthenticateWithCredential(credential).then(function() {
-            if(oldAuthKey !== newAuthKey && newAuthKey!= "" && oldAuthKey!=="")
+            if(adminKey === oldAuthKey && oldAuthKey !== newAuthKey && newAuthKey!= "" && oldAuthKey!=="")
             {
-                user.updateAuthword(newAuthKey).then(()=>{
-                    document.querySelector('.con-reg').classList.remove('d-none');
-                    document.querySelector(".settings-menu-updateauth").classList.add("d-none");
-                    setTimeout(()=>{
-                        document.querySelector('.con-reg').classList.add('d-none');
-                        document.querySelector(".settings-menu").classList.remove("d-none");
-                    },2000);
-                })
-                .catch((error)=>{
-                    var errorMessage = error.message;
-                    document.querySelector('.auth-error').innerHTML = `OPPS! ${errorMessage}`;
-                });
+                await db.collection("ticketsCount").doc("8Wb4NtiBXO8coiKwRTW7")
+                .update({ adminKey: newAuthKey });
 
+                document.querySelector('.con-reg').classList.remove('d-none');
+                document.querySelector(".settings-menu-updateauth").classList.add("d-none");
+                setTimeout(()=>{
+                    document.querySelector('.con-reg').classList.add('d-none');
+                    document.querySelector(".settings-menu").classList.remove("d-none");
+                },2000);
+
+            }
+            else if ( adminKey !== oldAuthKey)
+            {
+                document.querySelector('.auth-error').innerHTML = `OPPS! Old Auth Key Doesn't Match`;
             }
             else if(oldAuthKey === newAuthKey )
             {
