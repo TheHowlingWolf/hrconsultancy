@@ -249,6 +249,30 @@ h6 {
   background: #0a98c0;
 }
 
+
+#jobs {
+  width: 100%;
+  height: auto;
+  position: relative;
+  background: #f5f8fd url("../img/intro-bg.jpg") center top no-repeat;
+  background-size: cover;
+}
+
+
+#jobs .icon {
+  margin: 0 auto 15px auto;
+  padding-top: 12px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+#jobs .icon i {
+  font-size: 24px;
+  line-height: 1;
+}
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
