@@ -1,6 +1,7 @@
 var jobDet = document.getElementById('jobUpload');
 jobDet.addEventListener('submit', (e) => {
     e.preventDefault();
+    document.getElementById('jobpostButton').disabled = true;
     var jtitle = jobDet["jtitle"].value;
     var jtype = jobDet["jtype"].value;
     var jlocation = jobDet["jlocation"].value;
@@ -24,6 +25,6 @@ jobDet.addEventListener('submit', (e) => {
         responsiblity:jresponsibility
     }).then(ref=>{
         console.log(ref.id);
-        window.location.assign('./index.html')
+        window.location.assign('../index.html')
     })
 })
