@@ -45,7 +45,6 @@ document.getElementById('aResume').addEventListener('change', e => {
 
 document.getElementById('vResume').addEventListener('change', e => {
     document.getElementById('vResumeLabel').innerHTML = e.target.files[0].name;
-
 })
 
 cvUpload.addEventListener('submit', (e) => {
@@ -56,14 +55,10 @@ cvUpload.addEventListener('submit', (e) => {
     var phone = cvUpload["phone"].value;
     var AResume = cvUpload["aResume"].files[0];
     var VResume = cvUpload["vResume"].files[0];
-    console.log(name);
-    console.log(email);
-    console.log(phone);
-    console.log(AResume);
-    console.log(VResume);
 
     videoResume = 'video-CV/' + Date.now() + email;
     audioResume = 'audio-CV/' + Date.now() + email;
+    
     var audioStorageRef = firebase.storage().ref(audioResume)
     var task = audioStorageRef.put(AResume)
     task.on('state_changed',
@@ -95,7 +90,7 @@ cvUpload.addEventListener('submit', (e) => {
         videoResume: videoResume
     }).then(ref=>{
         cvUpload.reset();
-        console.log(ref.data());
+        window.location.assign('../index.html')
         
         
     }).catch(err=>console.log(JSON.stringify(err)));
