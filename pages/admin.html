@@ -75,13 +75,38 @@
 
 
     <main id="intro" class="">
-        <section id="" class="view-applicants  clearfix pb-5">
+        <section id="viewApplicants" class="view-applicants  clearfix pb-5">
             <div class="container pt-5">
                 <header class="section-header mt-5 pt-4">
                     <h3>View Applicants</h3>
                 </header>
                 <div class="row justify-content-left align-items-center" id="allJobApplicants">
                     <!-- -->
+                </div>
+            </div>
+        </section>
+        <section id="viewApplicantsDetails" class="view-applicants d-none  clearfix pb-5">
+            <div class="container pt-5 align-content-center ">
+                <header class="section-header mt-5 pt-4 ">
+                    <h3>View Applicants details</h3>
+                </header>
+                <div class="col-12 px-auto ">
+
+                    <table class="table table-responsive align-self-center  text-center table-hover ">
+                        <thead class=" ">
+                            <tr class="border border-info">
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone No</th>
+                                <th>Audio Resume</th>
+                                <th>Video Resume</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobApplicantDetails">
+
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
         </section>
@@ -135,7 +160,7 @@
     <!-- Template Main Javascript File -->
     <script src="../js/main.js"></script>
     <script src="../js/firebase.js"></script>
-    <script src ="../js/normalAdmin.js"></script>
+    <script src="../js/normalAdmin.js"></script>
     <!-- <script src="../js/viewJobs.js"></script> -->
 
 </body>
