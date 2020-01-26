@@ -33,8 +33,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
     <li class="active"><a href="#intro">Home</a></li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="./pages/openings.html">Current Opennings</a></li>
-    <li><a href="./pages/login.html">Admin login</a></li>
+    <li><a href="../pages/openings.html">Current Opennings</a></li>
+    <li><a href="../pages/login.html">Admin login</a></li>
     <li><a href="#footer">Contact Us</a></li>
     </ul>`;
     }
