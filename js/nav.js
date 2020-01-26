@@ -23,7 +23,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
         `<ul>
         <li><a href="../pages/admin.html">Home</a></li>
         <li><a href="../pages/adminpost.html">Post A Job</a></li>
-        <li><a href="#footer">Logout</a></li>
         <ul>`;
       }
     } else {
