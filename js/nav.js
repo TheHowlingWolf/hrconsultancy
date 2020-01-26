@@ -26,28 +26,22 @@ var logout;
             <li><a href="../pages/adminpost.html">Post A Job</a></li>
             <li><a href="" class="logout">Logout</a></li>
             <ul>`;
-      }
-      //get logout
-      logout = document.querySelector('.logout');
-      logout.addEventListener('click', (e) => {
-        e.preventDefault();
-        auth.signOut().then(() => {
-          window.location.assign("../index.html");
-        })
-      });
-    } else {
-      // No user is signed in.
-      nav.innerHTML =
+          }
+          //get logout
+          logout = document.querySelector('.logout');
+        } else {
+          // No user is signed in.
+          nav.innerHTML = 
         `<ul>
         <li class="active"><a href="#intro">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="./pages/openings.html">Current Opennings</a></li>
-        <li><a href="./pages/login.html">Admin login</a></li>
+        <li><a href="../pages/openings.html">Current Opennings</a></li>
+        <li><a href="../pages/login.html">Admin login</a></li>
         <li><a href="#footer">Contact Us</a></li>
         </ul>`;
-    }
-  });
-  //////logout users
-
+        }
+      });
+    //////logout users
+    
 })();
