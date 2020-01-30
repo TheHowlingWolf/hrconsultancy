@@ -3,7 +3,7 @@ var nav = document.querySelector('.main-nav');
 if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#intro" || window.location.href === "file:///D:/projects/hrconsultancy/index.html"){
     nav.innerHTML = 
         `<ul>
-        <li class="active"><a href="../index.html#intro">Home</a></li>
+        <li class="active"><a href="./index.html#intro">Home</a></li>
         <li><a href="./index.html#about">About Us</a></li>
         <li><a href="./index.html#services">Services</a></li>
         <li><a href="./pages/openings.html">Current Opennings</a></li>
@@ -15,7 +15,7 @@ if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#intro"
 if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#about"){
     nav.innerHTML = 
         `<ul>
-        <li><a href="../index.html#intro">Home</a></li>
+        <li><a href="./index.html#intro">Home</a></li>
         <li class="active"><a href="./index.html#about">About Us</a></li>
         <li><a href="./index.html#services">Services</a></li>
         <li><a href="./pages/openings.html">Current Opennings</a></li>
@@ -27,7 +27,7 @@ if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#about"
 if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#services"){
     nav.innerHTML = 
         `<ul>
-        <li><a href="../index.html#intro">Home</a></li>
+        <li><a href="./index.html#intro">Home</a></li>
         <li><a href="./index.html#about">About Us</a></li>
         <li class="active"><a href="./index.html#services">Services</a></li>
         <li><a href="./pages/openings.html">Current Opennings</a></li>
@@ -39,7 +39,7 @@ if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#servic
 if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#footer"){
     nav.innerHTML = 
         `<ul>
-        <li><a href="../index.html#intro">Home</a></li>
+        <li><a href="./index.html#intro">Home</a></li>
         <li><a href="./index.html#about">About Us</a></li>
         <li><a href="./index.html#services">Services</a></li>
         <li><a href="./pages/openings.html">Current Opennings</a></li>
