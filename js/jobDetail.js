@@ -59,49 +59,28 @@ cvUpload.addEventListener('submit', async (e) => {
     videoResume = 'video-CV/' + Date.now() + email;
     audioResume = 'audio-CV/' + Date.now() + email;
 
-    var audioStorageRef = await firebase.storage().ref(audioResume);
-    var task1 = audioStorageRef.put(AResume);
+    var audioStorageRef = firebase.storage().ref(audioResume);
+    var task1 =await audioStorageRef.put(AResume);
+console.log(task1);
+  
+    let videoStorageRef = firebase.storage().ref(videoResume)
 
-    await task1.on('state_changed',
-        function error(err) {
-            console.log(err);
-        },
-        function complete() {
-            console.log("success");
-        }
-    )
-
-    var videoStorageRef = firebase.storage().ref(videoResume)
-
-    let task2 = videoStorageRef.put(AResume)
-    await task2.on('state_changed',
-        function error(err) {
-            console.log(err);
-        },
-        function complete() {
-            db.collection('CV').add({
-                name: name,
-                email: email,
-                jid: s.jid,
-                phoneNo: phone,
-                audioResume: audioResume,
-                videoResume: videoResume
-            }).then(ref => {
-                cvUpload.reset();
-                window.location.assign('../index.html')
-
-
-            }).catch(err => console.log(JSON.stringify(err)));
-
-        }
-    )
-
-
-
-    if (task2 && task1) {
-
+    let task2 = await videoStorageRef.put(AResume)
+    console.log(task2);
+    if(task2 && task1){
+        db.collection('CV').add({
+            name: name,
+            email: email,
+            jid: s.jid,
+            phoneNo: phone,
+            audioResume: audioResume,
+            videoResume: videoResume
+        }).then(ref => {
+            cvUpload.reset();
+            window.location.assign('../index.html')
+        }).catch(err => console.log(JSON.stringify(err)));
     }
-
+  
 })
 
 
