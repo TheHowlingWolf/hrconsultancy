@@ -1,4 +1,4 @@
-console.log(auth);
+
 auth.onAuthStateChanged(user => {
     if (user) {
 
@@ -77,7 +77,7 @@ auth.onAuthStateChanged(user => {
             }
             else {
                 console.log("not admin")
-                window.location.assign('/login.html')
+                window.location.assign('./login.html')
             }
 
 
