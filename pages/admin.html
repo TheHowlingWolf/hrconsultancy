@@ -72,7 +72,7 @@
 
     <main id="viewApplicants-intro" class="">
         <section id="viewApplicants" class="view-applicants  clearfix pb-5">
-            <div class="container pt-5">
+            <div class="container pt-5 ">
                 <header class="section-header mt-5 pt-4">
                     <h3>View Applicants</h3>
                 </header>
@@ -81,7 +81,7 @@
                       <img src="../img/loader.svg" alt="" srcset="" class="img-fluid">
                     </div>
                 </div>
-                <div class="row justify-content-left align-items-center d-none" id="allJobApplicants"></div>
+                <div class="row justify-content-left align-items-center mx-auto d-none" id="allJobApplicants"></div>
             </div>
         </section>
         <section id="viewApplicantsDetails" class="view-applicants d-none clearfix pb-5">
@@ -164,7 +164,7 @@
     <script src="../js/normalAdmin.js"></script>
     <script src="../js/auth_out.js"></script>
     <!-- <script src="../js/viewJobs.js"></script> -->
-    <script >
+    <script>
         var jobView = document.getElementById('allJobApplicants');
         setInterval(()=>{
             if(jobView.innerHTML !== ""){
