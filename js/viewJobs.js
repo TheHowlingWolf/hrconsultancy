@@ -56,3 +56,11 @@ function viewDetails(jobId) {
     window.location.assign(`./jobDetail.html?jid=${jobId}` );
 }
 
+( async function(){
+  setTimeout(()=>{
+    if(jobView.innerHTML === "")
+  {
+    console.log("Loading");
+  }
+  },2000);
+} )();

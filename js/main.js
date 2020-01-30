@@ -87,7 +87,7 @@
   
       if (cur_pos >= top && cur_pos <= bottom) {
         main_nav.find('li').removeClass('active');
-        var location = window.location.href;
+        //var location = window.location.href;
         main_nav.find(`a[href="${location}"]`).parent('li').addClass('active');
       }
     });
