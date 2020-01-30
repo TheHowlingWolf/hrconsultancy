@@ -261,10 +261,13 @@
     <script src="../js/viewJobs.js"></script>
     <script src="../js/nav.js"></script>
     <script >
-        setTimeout(()=>{
-            document.querySelector('#loading-jobs').classList.add('d-none');    
-            document.querySelector('#jobs').classList.remove('d-none');
-        },3000);
+        var jobView = document.getElementById('jobs');
+        setInterval(()=>{
+            if(jobView.innerHTML !== ""){
+                document.querySelector('#loading-jobs').classList.add('d-none');    
+                document.querySelector('#jobs').classList.remove('d-none');
+            }
+        },1000);
     </script>
 </body>
 </html>
