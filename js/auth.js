@@ -63,18 +63,17 @@ Login.addEventListener('submit', (e) => {
             Login.reset();
             setTimeout((time) => {
                 auth.onAuthStateChanged(function (user) {
-                    db.collection('UserProfile').where('uid','==',user.uid).get().then((snapshot)=>{
+                    db.collection('UserProfile').where('uid', '==', user.uid).get().then((snapshot) => {
                         var adminCheck = snapshot.docs[0].data().superAdminAccess;
                         console.log(adminCheck);
 
                         if (adminCheck) {
                             window.location.assign('../pages/superadmin.html');
                         }
-                        else
-                        { 
+                        else {
                             window.location.assign('../pages/admin.html');
                         }
-                   })
+                    })
                 })
             }, 2000);
         })
