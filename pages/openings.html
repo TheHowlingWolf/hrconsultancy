@@ -80,35 +80,12 @@
                 <header class="section-header mt-5 pt-4">
                     <h3>Current Opennings</h3>
                   </header>
-                <div class="row justify-content-left align-items-center" id="jobs">
-                    <!-- <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; ">
-                            <div class="card-header">Job Title</div>
-                            <div class="card-body">
-                              <h5 class="card-title">
-                                <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline"
-                                    style="color: #3fcdc7;"></i></div>
-                                  {Job Company Name}
-                              </h5>
-                              <p class="card-text">
-                                <span class="badge bg-light text-info">{F/WH Time}</span>
-                                  <br />{Description}</p>
-                              <div class="card-footer">
-                                <div class="apply">
-                                    <div class="details" style="font-size: 15px;">
-                                        {Job Location}<br />,{Time of Post}<br />,{Job Domain}
-                                    </div>
-                                      <div class="text-right">
-                                        <a href="#" class="ml-2 btn btn-md btn-light text-dark">View More</a>
-                                      </div>
-                                  </div>
-                              </div> 
-                            </div>
-                        </div>
-                    </div> -->
-               
-                   
-            </div>
+                  <div class="row justify-content-center text-center align-items-center" id="loading-jobs">
+                      <div class="col align-self-center">
+                        <img src="../img/loader.svg" alt="" srcset="" class="img-fluid">
+                      </div>
+                  </div>
+                <div class="row justify-content-left align-items-center d-none" id="jobs"></div>
             </div>
         </section><!-- #services -->
 
@@ -283,6 +260,11 @@
     <script src="../js/firebase.js"></script>
     <script src="../js/viewJobs.js"></script>
     <script src="../js/nav.js"></script>
+    <script >
+        setTimeout(()=>{
+            document.querySelector('#loading-jobs').classList.add('d-none');    
+            document.querySelector('#jobs').classList.remove('d-none');
+        },3000);
+    </script>
 </body>
-
 </html>
