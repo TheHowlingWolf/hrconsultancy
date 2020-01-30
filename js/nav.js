@@ -1,7 +1,9 @@
 
 var nav = document.querySelector('.main-nav');
+var mob_nav = document.querySelector('.mobile-nav');
 if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#intro" || window.location.href === "file:///D:/projects/hrconsultancy/index.html"){
-    nav.innerHTML = 
+    if(nav){
+        nav.innerHTML = 
         `<ul>
         <li class="active"><a href="./index.html#intro">Home</a></li>
         <li><a href="./index.html#about">About Us</a></li>
@@ -10,6 +12,18 @@ if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#intro"
         <li><a href="./pages/login.html">Admin login</a></li>
         <li><a href="./index.html#footer">Contact Us</a></li>
         </ul>`;
+    }
+    if(mob_nav){
+        nav.innerHTML = 
+        `<ul>
+        <li class="active"><a href="./index.html#intro">Home</a></li>
+        <li><a href="./index.html#about">About Us</a></li>
+        <li><a href="./index.html#services">Services</a></li>
+        <li><a href="./pages/openings.html">Current Opennings</a></li>
+        <li><a href="./pages/login.html">Admin login</a></li>
+        <li><a href="./index.html#footer">Contact Us</a></li>
+        </ul>`;
+    } 
 }
 
 if(window.location.href === "file:///D:/projects/hrconsultancy/index.html#about"){
