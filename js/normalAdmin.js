@@ -57,14 +57,9 @@ function downloadFile(filename) {
     console.log(filename);
     firebase.storage().ref().child(filename).getDownloadURL().then(function (url) {
         // `url` is the download URL for 'images/stars.jpg'
-console.log(url);
+        console.log(url);
         // This can be downloaded directly:
-        
-        
-        
-        window.location.assign(url);
-
-        
+        window.open(url, '_blank');
     }).catch(function (error) {
         // Handle any errors
         console.log(error);
