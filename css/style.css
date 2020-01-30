@@ -1618,3 +1618,14 @@ h6 {
   background: #f5f8fd url("../img/intro-bg.jpg") center top no-repeat;
   background-size: cover;
 }
+
+.col-overlay{
+  background-color: #1bb2dca8;
+  color: #fff !important;
+  border-radius: 10px;
+}
+
+.login-btn:hover{
+  background-color: #ffffff;
+  border: none !important;
+}
