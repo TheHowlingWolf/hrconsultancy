@@ -81,7 +81,7 @@
                       <img src="../img/loader1.svg" alt="" srcset="" class="img-fluid">
                     </div>
                 </div>
-                <div class="row justify-content-left align-items-center" id="allJobApplicants">
+                <div class="row justify-content-left align-items-center d-none" id="allJobApplicants">
                     <!-- -->
                 </div>
             </div>
@@ -167,10 +167,13 @@
     <script src="../js/auth_out.js"></script>
     <!-- <script src="../js/viewJobs.js"></script> -->
     <script >
-        setTimeout(()=>{
-            document.querySelector('#loading-jobs').classList.add('d-none');    
-            document.querySelector('#allJobApplicants').classList.remove('d-none');
-        },3000);
+        var jobView = document.getElementById('allJobApplicants');
+        setInterval(()=>{
+            if(jobView.innerHTML !== ""){
+                document.querySelector('#loading-jobs').classList.add('d-none');    
+                document.querySelector('#allJobApplicants').classList.remove('d-none');
+            }
+        },1000);
     </script>
 </body>
 
