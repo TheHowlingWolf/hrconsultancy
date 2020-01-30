@@ -44,36 +44,7 @@ auth.onAuthStateChanged(user => {
                 })
 
 
-                function viewApplicantDetails(jid) {
-                    document.getElementById('viewApplicants').classList.add('d-none');
-                    document.getElementById('viewApplicantsDetails').classList.remove('d-none');
-                    var applicantsDetail = document.getElementById('jobApplicantDetails');
-                    db.collection('CV').where('jid', '==', `${jid}`).get().then(snapshot => {
-                        snapshot.forEach(doc => {
-                            applicantsDetail.innerHTML += `<tr>
-                                            <td>${doc.data().name}</td>
-                                            <td>${doc.data().email}</td>
-                                            <td>${doc.data().phoneNo}</td>
-                                            <td>  <button class="btn btn-info" onClick="downloadFile('${doc.data().audioResume}')"> Audio </button>  </td>
-                                            <td><button class="btn btn-info" onClick="downloadFile('${doc.data().videoResume}')"> Video </button> </td>
-                                        </tr>`
-                        })
-                    })
-                }
-
-                function downloadFile(filename) {
-                    console.log(filename);
-                    firebase.storage().ref().child(filename).getDownloadURL().then(function (url) {
-                        // `url` is the download URL for 'images/stars.jpg'
-                        console.log(url);
-                        // This can be downloaded directly:
-                        window.open(url, '_blank');
-                    }).catch(function (error) {
-                        // Handle any errors
-                        console.log(error);
-                    });
-                }
-
+            
             }
             else {
                 console.log("not admin")
@@ -90,3 +61,33 @@ auth.onAuthStateChanged(user => {
 })
 
 
+
+function viewApplicantDetails(jid) {
+    document.getElementById('viewApplicants').classList.add('d-none');
+    document.getElementById('viewApplicantsDetails').classList.remove('d-none');
+    var applicantsDetail = document.getElementById('jobApplicantDetails');
+    db.collection('CV').where('jid', '==', `${jid}`).get().then(snapshot => {
+        snapshot.forEach(doc => {
+            applicantsDetail.innerHTML += `<tr>
+                            <td>${doc.data().name}</td>
+                            <td>${doc.data().email}</td>
+                            <td>${doc.data().phoneNo}</td>
+                            <td>  <button class="btn btn-info" onClick="downloadFile('${doc.data().audioResume}')"> Audio </button>  </td>
+                            <td><button class="btn btn-info" onClick="downloadFile('${doc.data().videoResume}')"> Video </button> </td>
+                        </tr>`
+        })
+    })
+}
+
+function downloadFile(filename) {
+    console.log(filename);
+    firebase.storage().ref().child(filename).getDownloadURL().then(function (url) {
+        // `url` is the download URL for 'images/stars.jpg'
+        console.log(url);
+        // This can be downloaded directly:
+        window.open(url, '_blank');
+    }).catch(function (error) {
+        // Handle any errors
+        console.log(error);
+    });
+}
