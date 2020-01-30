@@ -46,9 +46,27 @@ function viewApplicantDetails(jid) {
             <td>${doc.data().name}</td>
             <td>${doc.data().email}</td>
             <td>${doc.data().phoneNo}</td>
-            <td>${doc.data().audioResume}</td>
-            <td>${doc.data().videoResume}</td>
+            <td>  <button class="btn btn-info" onClick="downloadFile('${doc.data().audioResume}')"> Audio </button>  </td>
+            <td><button class="btn btn-info" onClick="downloadFile('${doc.data().videoResume}')"> Video </button> </td>
         </tr>`
         })
     })
+}
+
+function downloadFile(filename) {
+    console.log(filename);
+    firebase.storage().ref().child(filename).getDownloadURL().then(function (url) {
+        // `url` is the download URL for 'images/stars.jpg'
+console.log(url);
+        // This can be downloaded directly:
+        
+        
+        
+        window.location.assign(url);
+
+        
+    }).catch(function (error) {
+        // Handle any errors
+        console.log(error);
+    });
 }

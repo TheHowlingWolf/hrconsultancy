@@ -47,7 +47,7 @@ document.getElementById('vResume').addEventListener('change', e => {
     document.getElementById('vResumeLabel').innerHTML = e.target.files[0].name;
 })
 
-cvUpload.addEventListener('submit', (e) => {
+cvUpload.addEventListener('submit', async (e) => {
     e.preventDefault();
     document.getElementById('cvButton').disabled = true;
     var name = cvUpload["name"].value;
@@ -58,10 +58,11 @@ cvUpload.addEventListener('submit', (e) => {
 
     videoResume = 'video-CV/' + Date.now() + email;
     audioResume = 'audio-CV/' + Date.now() + email;
-    
-    var audioStorageRef = firebase.storage().ref(audioResume)
-    var task = audioStorageRef.put(AResume)
-    task.on('state_changed',
+
+    var audioStorageRef = await firebase.storage().ref(audioResume);
+    var task1 = audioStorageRef.put(AResume);
+
+    await task1.on('state_changed',
         function error(err) {
             console.log(err);
         },
@@ -69,32 +70,37 @@ cvUpload.addEventListener('submit', (e) => {
             console.log("success");
         }
     )
+
     var videoStorageRef = firebase.storage().ref(videoResume)
 
-    task = videoStorageRef.put(AResume)
-    task.on('state_changed',
+    let task2 = videoStorageRef.put(AResume)
+    await task2.on('state_changed',
         function error(err) {
             console.log(err);
         },
         function complete() {
-            console.log("success");
+            db.collection('CV').add({
+                name: name,
+                email: email,
+                jid: s.jid,
+                phoneNo: phone,
+                audioResume: audioResume,
+                videoResume: videoResume
+            }).then(ref => {
+                cvUpload.reset();
+                window.location.assign('../index.html')
+
+
+            }).catch(err => console.log(JSON.stringify(err)));
+
         }
     )
 
-    db.collection('CV').add({
-        name: name,
-        email: email,
-        jid:s.jid,
-        phoneNo: phone,
-        audioResume: audioResume,
-        videoResume: videoResume
-    }).then(ref=>{
-        cvUpload.reset();
-        window.location.assign('../index.html')
-        
-        
-    }).catch(err=>console.log(JSON.stringify(err)));
 
+
+    if (task2 && task1) {
+
+    }
 
 })
 
