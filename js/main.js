@@ -87,8 +87,13 @@
   
       if (cur_pos >= top && cur_pos <= bottom) {
         main_nav.find('li').removeClass('active');
-        //var location = window.location.href;
+        var location = window.location.pathname;
+        console.log(`${$(this).attr('id')}`);
+        if(location !== "/")
         main_nav.find(`a[href="${location}"]`).parent('li').addClass('active');
+        else
+        main_nav.find('a[href="/#'+$(this).attr('id')+'"]').parent('li').addClass('active');
+    
       }
     });
   });
