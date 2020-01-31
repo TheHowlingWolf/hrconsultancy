@@ -70,19 +70,65 @@
   <section id="intro" class="clearfix">
     <div class="container d-flex h-100">
       <div class="row justify-content-center  align-self-center ">
-        <div class="col-md-6 intro-info order-md-first order-last">
-          <h2>Harnessing aspirations of the<br>people and steering them towards the organization’s<span>
-              destination.</span></h2>
-          <div>
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <div class="col align-self-center">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-md-6 intro-info order-md-first order-last">
+                    <p class="theme-blue font-weight-bold h2 my-2">Our Vision</p>
+                    <h2>Harnessing aspirations of the<br>people and steering them towards the organization’s<span>
+                        destination.</span></h2>
+                    <div>
+                      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+                    </div>
+                  </div>
+                  <div class="col-md-6 intro-img order-md-last order-first">
+                    <img src="img/intro-img.svg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-7 order-md-first order-last align-self-center">
+                    <div class="mission-header wow bounceInUp">
+                     <img src="img/work.svg" alt="" class="img-fluid">
+                    </div>
+                  </div>
+                  <div class="col-5 order-md-first order-last align-self-center">
+                    <div class="mission-header wow bounceInUp">
+                      <p class="theme-blue font-weight-bold h2 my-2">Our Mission</p>
+                      <p class="font-weight-bold h4 text-lg-justify my-2">We believe to create and nurture processes
+                        enhancing the capabilities of human resources to deliver and perform at their optimum potential level.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row text-center">
+                  <div class="col-2"></div>
+                  <div class="col-8 intro-img">
+                    <div class="mission-header wow bounceInUp">
+                      <img src="img/2020.svg" alt="" class="img-fluid">
+                      <h2 class="theme-blue font-weight-bold">Explore a decade of new possibilities!</h2>  
+                    </div>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
-
-        <div class="col-md-6 intro-img order-md-last order-first">
-          <img src="img/intro-img.svg" alt="" class="img-fluid">
-        </div>
       </div>
-
     </div>
   </section><!-- #intro -->
 
@@ -176,25 +222,13 @@
     <!--==========================
       Mission Section
     ============================-->
-    <section id="mission" class="bg-light py-5 text-center">
+    <!-- <section id="mission" class="bg-light py-5 text-center">
       <div class="container-fluid d-flex h-100">
         <div class="row justify-content-center align-item-center">
-          <div class="col-6 order-md-first order-last align-self-center">
-            <div class="mission-header wow bounceInUp pl-5">
-              <p class="theme-blue font-weight-bold h2 my-2">Our Mission</p>
-              <p class="font-weight-bold h4 text-lg-justify my-2 px-lg-5">We believe to create and nurture processes
-                enhancing the capabilities of human resources to deliver and perform at their optimum potential level.
-              </p>
-            </div>
-          </div>
-          <div class="col-6 order-md-first order-last align-self-center">
-            <div class="mission-header wow bounceInUp">
-              <img src="img/mission.svg.svg" alt="" srcset="" class="img-fluid my-2">
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!--==========================
       Services Section
@@ -847,6 +881,11 @@
   <script src="js/main.js"></script>
   <script src="js/firebase.js"></script>
   <script src="js/viewJobs.js"></script>
+  <script>
+    $('.carousel').carousel({
+    interval: 3000
+    })
+  </script>
 </body>
 
 </html>
