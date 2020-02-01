@@ -48,6 +48,12 @@ site.addEventListener('submit', (e) => {
         });
 }); */
 
+auth.onAuthStateChanged(user=>{
+    if(user){
+        window.location.assign('./admin.html');
+    }
+})
+
 //login users
 const Login = document.querySelector('#login-form');
 Login.addEventListener('submit', (e) => {
