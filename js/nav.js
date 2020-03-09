@@ -32,7 +32,7 @@ if (window.location.pathname === "/pages/services.html") {
         <li><a href="/#about">About Us</a></li>
         <li class="active"><a href="/pages/services.html">Services</a></li>
         <li><a href="/pages/openings.html">Current Opennings</a></li>
-        <li><a href="/pages/services.html/#footer">Contact Us</a></li>
+        <li><a href="/pages/services.html#footer">Contact Us</a></li>
         </ul>`;
 }
 
@@ -56,7 +56,7 @@ if (window.location.pathname === "/pages/openings.html") {
         <li><a href="/pages/services.html">Services</a></li>
         <li class="active"><a href="/pages/openings.html">Current Opennings</a></li>
         
-        <li><a href="/pages/openings.html/#footer">Contact Us</a></li>
+        <li><a href="/pages/openings.html#footer">Contact Us</a></li>
         </ul>`;
 }
 
@@ -67,7 +67,7 @@ if (window.location.pathname === "/pages/login.html") {
         <li><a href="/#about">About Us</a></li>
         <li><a href="/pages/services.html">Services</a></li>
         <li><a href="/pages/openings.html">Current Opennings</a></li>
-        <li><a href="/pages/login.html/#footer">Contact Us</a></li>
+        <li><a href="/pages/login.html#footer">Contact Us</a></li>
         </ul>`;
 }
 

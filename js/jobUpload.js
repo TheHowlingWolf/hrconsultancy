@@ -2,8 +2,8 @@
 auth.onAuthStateChanged(user => {
     if (user) {
 
-        db.collection('UserProfile').where("uid", "==", `${user.uid}`).get().then(doc => {
-              if (doc.docs[0].data().adminAccess) {
+        db.collection('UserProfile').where("uid", "==", `${user.uid}`).get().then(snapshot => {
+              if (snapshot.docs[0].data().adminAccess) {
                   console.log(user);
                 var jobDet = document.getElementById('jobUpload');
                 jobDet.addEventListener('submit', (e) => {
