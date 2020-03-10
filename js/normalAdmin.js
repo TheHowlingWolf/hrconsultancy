@@ -9,37 +9,45 @@ auth.onAuthStateChanged(user => {
                 var applicantsNo;
                 db.collection('job').get().then(async snapshot => {
                     let index = 0;
-                    await snapshot.forEach(async (doc) => {
-                        index += 1;
+                    if(snapshot.length > 0)
+                    {
+                            await snapshot.forEach(async (doc) => {
+                            index += 1;
 
-                        await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
-                            allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9 ml-auto ">
-                                <div class="card text-white bg-info mb-3 " style="max-width:30rem; ">
-                                    <div class="card-header font-weight-bold text-center">${doc.data().title}</div>
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            <span class="badge bg-light  float-right text-info" id='job${doc.id}'></span>
-                                            <div class="card-footer mt-4">
-                                                <div class="apply">
-                                                    <div class="details" style="font-size: 15px;">
-                            ${doc.data().location}<br />january,15 2020 <br />${doc.data().position}
-                                                    </div>
-                                                    <div class="text-right mt-3">
-                                                        <button  class="ml-2 btn btn-md btn-light text-info" onClick="viewApplicantDetails('${doc.id}')">View all
-                                                            Applicants</button>
+                            await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
+                                allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9 ml-auto ">
+                                    <div class="card text-white bg-info mb-3 " style="max-width:30rem; ">
+                                        <div class="card-header font-weight-bold text-center">${doc.data().title}</div>
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <span class="badge bg-light  float-right text-info" id='job${doc.id}'></span>
+                                                <div class="card-footer mt-4">
+                                                    <div class="apply">
+                                                        <div class="details" style="font-size: 15px;">
+                                ${doc.data().location}<br />january,15 2020 <br />${doc.data().position}
+                                                        </div>
+                                                        <div class="text-right mt-3">
+                                                            <button  class="ml-2 btn btn-md btn-light text-info" onClick="viewApplicantDetails('${doc.id}')">View all
+                                                                Applicants</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>`
-                            applicantsNo = await document.getElementById(`job${doc.id}`);
+                                </div>`
+                                applicantsNo = await document.getElementById(`job${doc.id}`);
 
-                            applicantsNo.innerHTML = `${documents.docs.length} applicants`
+                                applicantsNo.innerHTML = `${documents.docs.length} applicants`
 
-
+                            
                         });
                     });
+                }
+                else{
+                    allJobApplicants.innerHTML +=`<div> 
+                    
+                    </div>`
+                }
 
                 })
 

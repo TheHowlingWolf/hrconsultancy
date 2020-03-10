@@ -1,12 +1,12 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyC5lE9ltaYZ6xit8VGUiUYhWFOvUviCpnQ",
-  authDomain: "hrconsultancy-e0437.firebaseapp.com",
-  databaseURL: "https://hrconsultancy-e0437.firebaseio.com",
-  projectId: "hrconsultancy-e0437",
-  storageBucket: "hrconsultancy-e0437.appspot.com",
-  messagingSenderId: "930495894358",
-  appId: "1:930495894358:web:e90e3790639aa2e5d7fcf7",
-  measurementId: "G-GZ8H8PR06S"
+  apiKey: "AIzaSyAhUnnpmzzb-wD1KSNz91In0xZ3X6m3Adk",
+  authDomain: "hrconsultancy-d09c5.firebaseapp.com",
+  databaseURL: "https://hrconsultancy-d09c5.firebaseio.com",
+  projectId: "hrconsultancy-d09c5",
+  storageBucket: "hrconsultancy-d09c5.appspot.com",
+  messagingSenderId: "584668704495",
+  appId: "1:584668704495:web:bc4f316106274b3598f51a",
+  measurementId: "G-VYKZVSTN2V"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
