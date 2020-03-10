@@ -1,16 +1,17 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyCjQu04WUnLlSqr50hc9idk4Vi4cliKeYo",
-  authDomain: "hrconsultancy264.firebaseapp.com",
-  databaseURL: "https://hrconsultancy264.firebaseio.com",
-  projectId: "hrconsultancy264",
-  storageBucket: "hrconsultancy264.appspot.com",
-  messagingSenderId: "464800183345",
-  appId: "1:464800183345:web:6320957e799be30b4a1110",
-  measurementId: "G-RFRGLBWS5R"
+  apiKey: "AIzaSyAhUnnpmzzb-wD1KSNz91In0xZ3X6m3Adk",
+  authDomain: "hrconsultancy-d09c5.firebaseapp.com",
+  databaseURL: "https://hrconsultancy-d09c5.firebaseio.com",
+  projectId: "hrconsultancy-d09c5",
+  storageBucket: "hrconsultancy-d09c5.appspot.com",
+  messagingSenderId: "584668704495",
+  appId: "1:584668704495:web:bc4f316106274b3598f51a",
+  measurementId: "G-VYKZVSTN2V"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
 
 //make auth and firestore references
 const auth = firebase.auth();
