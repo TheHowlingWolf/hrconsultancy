@@ -114,12 +114,28 @@ if (window.location.pathname === "/pages/adminPost.html") {
     logout = document.querySelector('.logout');
 }
 
+//logo change
+window.addEventListener("scroll",(e)=>{
+    
+    cur= document.querySelector('#header').offsetHeight
+     if(window.location.href !== 'https://hrconsultant.co.in/' || window.location.href !== 'https://hrconsultant.co.in')
+    {
+        if(window.scrollY > 0+cur)
+            document.querySelector('#logohead').src = "../img/logoScroll.png" 
+        else if (window.scrollY <= 0+cur)
+            document.querySelector('#logohead').src = "../img/logo.png"
+        else
+        console.log('hi');
+    }
+    else
+    {
+        if(window.scrollY > 0+cur)
+            document.querySelector('#logohead').src = "./img/logoScroll.png" 
+        else if (window.scrollY <= 0+cur)
+            document.querySelector('#logohead').src = "./img/logo.png"
+        else
+        console.log('hi');
+    }
+    
+})
 
-//get logout
-
-logout.addEventListener('click', (e) => {
-    e.preventDefault();
-    auth.signOut().then(() => {
-        window.location.assign("./");
-    })
-});

@@ -83,3 +83,11 @@
     })();
     
   });
+
+  //get logout
+logout.addEventListener('click', (e) => {
+    e.preventDefault();
+    auth.signOut().then(() => {
+        window.location.assign("./");
+    })
+});
