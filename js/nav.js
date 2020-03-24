@@ -120,7 +120,7 @@ window.addEventListener("scroll",(e)=>{
     cur= document.querySelector('#header').offsetHeight
      if(window.location.href !== 'https://hrconsultant.co.in/' || window.location.href !== 'https://hrconsultant.co.in')
     {
-        if(window.scrollY > 0+cur)
+        if(window.scrollY > 0)
             document.querySelector('#logohead').src = "../img/logoScroll.png" 
         else if (window.scrollY <= 0+cur)
             document.querySelector('#logohead').src = "../img/logo.png"
