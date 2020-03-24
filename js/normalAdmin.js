@@ -1,21 +1,27 @@
 
 auth.onAuthStateChanged(user => {
     if (user) {
-console.log(user)
+        console.log(user)
         db.collection('UserProfile').where("uid", "==", `${user.uid}`).get().then(doc => {
             console.log(doc.docs);
-            if (doc.docs[0].data().adminAccess) {
-                let allJobApplicants = document.getElementById('allJobApplicants');
-                var applicantsNo;
-                db.collection('job').get().then(async snapshot => {
-                    let index = 0;
-                    if(snapshot.length > 0)
-                    {
+            if (!doc.docs[0].data())
+                auth.signOut().then(() => {
+                    window.location.assign("./login.html");
+                })
+            else
+                if (doc.docs[0].data().adminAccess) {
+                    let allJobApplicants = document.getElementById('allJobApplicants');
+                    var applicantsNo;
+                    db.collection('job').get().then(async snapshot => {
+                        let index = 0;
+                        console.log("snapshot : "+ snapshot.docs.length)
+                        if (snapshot.docs.length > 0) {
                             await snapshot.forEach(async (doc) => {
-                            index += 1;
+                                console.log(doc.data());
+                                index += 1;
 
-                            await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
-                                allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9 ml-auto ">
+                                await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
+                                    allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9 ml-auto ">
                                     <div class="card text-white bg-info mb-3 " style="max-width:30rem; ">
                                         <div class="card-header font-weight-bold text-center">${doc.data().title}</div>
                                         <div class="card-body">
@@ -35,29 +41,29 @@ console.log(user)
                                         </div>
                                     </div>
                                 </div>`
-                                applicantsNo = await document.getElementById(`job${doc.id}`);
+                                    applicantsNo = await document.getElementById(`job${doc.id}`);
 
-                                applicantsNo.innerHTML = `${documents.docs.length} applicants`
+                                    applicantsNo.innerHTML = `${documents.docs.length} applicants`
 
-                            
-                        });
-                    });
-                }
-                else{
-                    allJobApplicants.innerHTML +=`<div> 
+
+                                });
+                            });
+                        }
+                        else {
+                            allJobApplicants.innerHTML += `<div> 
                     
                     </div>`
+                        }
+
+                    })
+
+
+
                 }
-
-                })
-
-
-            
-            }
-            else {
-                console.log("not admin")
-                window.location.assign('./login.html')
-            }
+                else {
+                    console.log("not admin")
+                    window.location.assign('./login.html')
+                }
 
 
         })

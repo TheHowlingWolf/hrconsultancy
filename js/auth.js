@@ -1,16 +1,18 @@
+//auth.js
+
 function showSignUpForm() {
     document.getElementById('signupForm').classList.remove('d-none');
     document.getElementById('signinForm').classList.add('d-none');
 
 }
-
+let flag = 0;
 //signup
 const site = document.getElementById('siteSignUp');
-site.addEventListener('submit', async (e) => {
+site.addEventListener('submit', (e) => {
     //preventing default refresh
     e.preventDefault();
     console.log('submit');
-
+    flag=1;
     //get user info
     const name = site['name'].value;
     const email = site['email'].value;
@@ -21,34 +23,48 @@ site.addEventListener('submit', async (e) => {
     console.log(email);
     //console.log(siteName+'\n'+devId+'\n'+password);
 
-    await db.collection('keys').get().then( async snapshot => {
+    db.collection('keys').get().then(snapshot => {
         if (snapshot.docs[0].data().authkey === adminKey) {
-           await auth.createUserWithEmailAndPassword(email, password)
-                .then(async cred => {
-                        document.querySelector('signinForm').classList.remove('d-none');
-                        document.querySelector('signupForm').classList.add('d-none');
-                        
-                        await db.collection('UserProfile').add({
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(cred => {
+                    auth.signOut().then(() => {
+                        db.collection('UserProfile').add({
                             uid: cred.user.uid,
                             name: name,
                             phone: phone,
                             adminAccess: adminAccess,
                             superAdminAccess: false
+                        }).then(doc=>{
+
+                            site.reset();
+                            document.querySelector('#signinForm').classList.remove('d-none');
+                            document.querySelector('#signupForm').classList.add('d-none');
                         });
-                        
+                    })
                 }).catch(function (error) {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     document.querySelector('.lgerror').innerHTML = `OPPS! ${errorMessage}`;
                 });
         }
-    })
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            window.location.assign('./admin.html');
+        else {
+            document.querySelector('.lgerror').innerHTML = `Invalid Access Key`;
+            console.log("Invalid Access Key");
         }
     })
 });
+
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        if (flag===0)
+            window.location.assign('./admin.html');
+        else
+        {
+            
+        }
+    }
+})
 
 
 //login users
