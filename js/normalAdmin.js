@@ -4,7 +4,7 @@ auth.onAuthStateChanged(user => {
         console.log(user)
         db.collection('UserProfile').where("uid", "==", `${user.uid}`).get().then(doc => {
             console.log(doc.docs);
-            if (!doc.docs.length.data())
+            if (!doc.docs[0].data())
                 auth.signOut().then(() => {
                     window.location.assign("./login.html");
                 })
@@ -14,8 +14,10 @@ auth.onAuthStateChanged(user => {
                     var applicantsNo;
                     db.collection('job').get().then(async snapshot => {
                         let index = 0;
-                        if (snapshot.length > 0) {
+                        console.log("snapshot : "+ snapshot.docs.length)
+                        if (snapshot.docs.length > 0) {
                             await snapshot.forEach(async (doc) => {
+                                console.log(doc.data());
                                 index += 1;
 
                                 await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
