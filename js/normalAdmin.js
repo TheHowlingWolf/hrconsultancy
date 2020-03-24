@@ -1,9 +1,9 @@
 
 auth.onAuthStateChanged(user => {
     if (user) {
-
+console.log(user)
         db.collection('UserProfile').where("uid", "==", `${user.uid}`).get().then(doc => {
-
+            console.log(doc.docs);
             if (doc.docs[0].data().adminAccess) {
                 let allJobApplicants = document.getElementById('allJobApplicants');
                 var applicantsNo;

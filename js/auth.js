@@ -1,4 +1,9 @@
-/* 
+function showSignUpForm() {
+    document.getElementById('signupForm').classList.remove('d-none');
+    document.getElementById('signinForm').classList.add('d-none');
+
+}
+
 //signup
 const site = document.getElementById('siteSignUp');
 site.addEventListener('submit', (e) => {
@@ -7,49 +12,42 @@ site.addEventListener('submit', (e) => {
     console.log('submit');
 
     //get user info
-    const siteName = site['sitename'].value;
+    const name = site['name'].value;
     const email = site['email'].value;
+    const phone = site['phone'].value;
     const password = site['password'].value;
-    const devId = site['devId'].value;
-    const adminAccess = false;
+    const adminKey = site['adminKey'].value;
+    const adminAccess = true;
     console.log(email);
     //console.log(siteName+'\n'+devId+'\n'+password);
 
-    //signup the user using firebase
-    auth.createUserWithEmailAndPassword(email, password)
-        .then(cred => {
-            //  console.log(cred.user.uid);
-            document.querySelector('.Register').classList.add('d-none');
-            document.querySelector('.con-reg').classList.remove('d-none');
-            setTimeout((time) => {
-                site.reset();
-                auth.signOut().then(() => {
-                    document.querySelector('.login').classList.remove('d-none');
-                    document.querySelector('.intro').classList.add('d-none');
-                    document.querySelector('.Register').classList.add('d-none');
-                    document.querySelector('.con-reg').classList.add('d-none');
-                    document.querySelector('.register-nav').style.borderBottom = '0px solid #ffc107';
-                    document.querySelector('.home-nav').style.borderBottom = '0px solid #ffc107';
-                    document.querySelector('.login-nav').style.borderBottom = '2px solid #ffc107';
-                    db.collection('UserProfile').add({
-                        uid: cred.user.uid,
-                        siteName: siteName,
-                        deviceId: devId,
-                        adminAccess: adminAccess
-                    });
-                })
-            }, 2000);
-        }).catch(function (error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
+    db.collection('keys').get().then(snapshot => {
+        if (snapshot.docs[0].data().authkey === adminKey) {
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(cred => {
+                    site.reset();
+                    auth.signOut().then(() => {
+                        document.querySelector('signinForm').classList.remove('d-none');
+                        document.querySelector('signupForm').classList.add('d-none');
+                        db.collection('UserProfile').add({
+                            uid: cred.user.uid,
+                            name: name,
+                            phone: phone,
+                            adminAccess: adminAccess,
+                            superAdminAccess: false
+                        });
+                    })
+                }).catch(function (error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
+                });
+        }
+    })
+});
 
-            document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
-
-        });
-}); */
-
-auth.onAuthStateChanged(user=>{
-    if(user){
+auth.onAuthStateChanged(user => {
+    if (user) {
         window.location.assign('./admin.html');
     }
 })
