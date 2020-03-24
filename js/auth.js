@@ -6,7 +6,7 @@ function showSignUpForm() {
 
 //signup
 const site = document.getElementById('siteSignUp');
-site.addEventListener('submit', (e) => {
+site.addEventListener('submit', async (e) => {
     //preventing default refresh
     e.preventDefault();
     console.log('submit');
@@ -21,36 +21,35 @@ site.addEventListener('submit', (e) => {
     console.log(email);
     //console.log(siteName+'\n'+devId+'\n'+password);
 
-    db.collection('keys').get().then(snapshot => {
+    await db.collection('keys').get().then( async snapshot => {
         if (snapshot.docs[0].data().authkey === adminKey) {
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(cred => {
-                    site.reset();
-                    auth.signOut().then(() => {
+           await auth.createUserWithEmailAndPassword(email, password)
+                .then(async cred => {
                         document.querySelector('signinForm').classList.remove('d-none');
                         document.querySelector('signupForm').classList.add('d-none');
-                        db.collection('UserProfile').add({
+                        
+                        await db.collection('UserProfile').add({
                             uid: cred.user.uid,
                             name: name,
                             phone: phone,
                             adminAccess: adminAccess,
                             superAdminAccess: false
                         });
-                    })
+                        
                 }).catch(function (error) {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
+                    document.querySelector('.lgerror').innerHTML = `OPPS! ${errorMessage}`;
                 });
+        }
+    })
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            window.location.assign('./admin.html');
         }
     })
 });
 
-auth.onAuthStateChanged(user => {
-    if (user) {
-        window.location.assign('./admin.html');
-    }
-})
 
 //login users
 const Login = document.querySelector('#login-form');
