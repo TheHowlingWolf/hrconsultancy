@@ -58,11 +58,13 @@ site.addEventListener('submit', (e) => {
 auth.onAuthStateChanged(user => {
     if (user) {
         if (flag===0)
-            window.location.assign('./admin.html');
-        else
-        {
-            
-        }
+            window.location.assign('../pages/admin.html');
+            if (adminCheck) {
+                window.location.assign('../pages/superadmin.html');
+            }
+            else {
+                window.location.assign('../pages/admin.html');
+            }
     }
 })
 
