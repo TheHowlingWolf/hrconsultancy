@@ -27,8 +27,8 @@ site.addEventListener('submit', (e) => {
                 .then(cred => {
                     site.reset();
                     auth.signOut().then(() => {
-                        document.querySelector('signinForm').classList.remove('d-none');
-                        document.querySelector('signupForm').classList.add('d-none');
+                        document.querySelector('#signinForm').classList.remove('d-none');
+                        document.querySelector('#signupForm').classList.add('d-none');
                         db.collection('UserProfile').add({
                             uid: cred.user.uid,
                             name: name,
@@ -40,16 +40,21 @@ site.addEventListener('submit', (e) => {
                 }).catch(function (error) {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    document.querySelector('.error').innerHTML = `OPPS! ${errorMessage}`;
+                    document.querySelector('.lgerror').innerHTML = `OPPS! ${errorMessage}`;
                 });
+        }
+        else{
+            console.log("Invalid Access Key");
         }
     })
 });
 
-auth.onAuthStateChanged(user => {
-    if (user) {
-        window.location.assign('./admin.html');
-    }
+window.onload(e=>{
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            window.location.assign('./admin.html');
+        }
+    })
 })
 
 //login users
