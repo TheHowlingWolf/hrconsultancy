@@ -3,14 +3,14 @@ function showSignUpForm() {
     document.getElementById('signinForm').classList.add('d-none');
 
 }
-
+let flag = 0;
 //signup
 const site = document.getElementById('siteSignUp');
 site.addEventListener('submit', (e) => {
     //preventing default refresh
     e.preventDefault();
     console.log('submit');
-
+    flag=1;
     //get user info
     const name = site['name'].value;
     const email = site['email'].value;
@@ -25,16 +25,18 @@ site.addEventListener('submit', (e) => {
         if (snapshot.docs[0].data().authkey === adminKey) {
             auth.createUserWithEmailAndPassword(email, password)
                 .then(cred => {
-                    site.reset();
                     auth.signOut().then(() => {
-                        document.querySelector('#signinForm').classList.remove('d-none');
-                        document.querySelector('#signupForm').classList.add('d-none');
                         db.collection('UserProfile').add({
                             uid: cred.user.uid,
                             name: name,
                             phone: phone,
                             adminAccess: adminAccess,
                             superAdminAccess: false
+                        }).then(doc=>{
+
+                            site.reset();
+                            document.querySelector('#signinForm').classList.remove('d-none');
+                            document.querySelector('#signupForm').classList.add('d-none');
                         });
                     })
                 }).catch(function (error) {
@@ -43,19 +45,24 @@ site.addEventListener('submit', (e) => {
                     document.querySelector('.lgerror').innerHTML = `OPPS! ${errorMessage}`;
                 });
         }
-        else{
+        else {
             console.log("Invalid Access Key");
         }
     })
 });
 
-window.onload(e=>{
-    auth.onAuthStateChanged(user => {
-        if (user) {
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        if (flag===0)
             window.location.assign('./admin.html');
+        else
+        {
+            
         }
-    })
+    }
 })
+
 
 //login users
 const Login = document.querySelector('#login-form');
