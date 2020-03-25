@@ -55,24 +55,27 @@ var cvUpload = document.getElementById('cvUpload');
         var name = cvUpload["name"].value;
         var email = cvUpload["email"].value;
         var phone = cvUpload["phone"].value;
-        var Resume = cvUpload["aResume"].files[0];
+        var Resume = cvUpload["Resume"].files[0];
 
         var filename = document.querySelector('#Resume').value;
         var extension = filename.split('.').pop();
-
-        if(extension == '.mp3' || extension == '.aac' || extension == '.wmv' || extension == '.ooc' )
-            Resume = 'Audio-CV/' + Date.now().toString() + email;
-        else if (extension == '.mkv' || extension == '.mp4' || extension == '.mpeg' )
-            Resume = 'Audio-CV/' + Date.now().toString() + email;
+        console.log(extension);
+        var nResume;
+        if(extension == 'mp3' || extension == 'aac' || extension == 'wmv' || extension == 'ooc' )
+            nResume = 'resume-CV/' +'Audio From: ' + email + ` ${(new Date).getDate()}`+"|" + `${(new Date).getMonth()+1}`+"|"+ `${(new Date).getYear()}`+"/" ;
+        else if (extension == 'mkv' || extension == 'mp4' || extension == 'mpeg' )
+        nResume = 'resume-CV/' +'Video From: ' + email + ` ${(new Date).getDate()}`+"|" + `${(new Date).getMonth()+1}`+"|"+ `${(new Date).getYear()}`+"/" ;
         else
             console.log('Not Supported');
         
+            var StorageRef = firebase.storage().ref(nResume);
+            var task1 = StorageRef.put(Resume);
+
         console.log(Resume);
 
-    var audioStorageRef = firebase.storage().ref(audioResume);
-    var task1 = audioStorageRef.put(AResume);
     
-    document.getElementById('audioProgressBar').classList.remove('d-none');
+    
+    /* document.getElementById('audioProgressBar').classList.remove('d-none');
     document.getElementById('audioInput').classList.add('d-none');
     let AProgressBar = document.getElementById('AprogressBar');
     task1.on('state_changed', function (snapshot) {
@@ -101,22 +104,23 @@ var cvUpload = document.getElementById('cvUpload');
 
         }, function (error) {
             console.log("Error Uploading Video");
-        }, function () {
+        },  */
+        
             db.collection('CV').add({
                 name: name,
                 email: email,
                 jid: s.jid,
                 phoneNo: phone,
-                audioResume: audioResume,
-                videoResume: videoResume
+                Resume: Resume
             }).then(ref => {
                 cvUpload.reset();
                 window.location.assign('../index.html')
             }).catch(err => console.log(JSON.stringify(err)));
 
 
-        });
-    });
+        
+    
+    
 
 
 
