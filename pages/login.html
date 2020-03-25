@@ -78,14 +78,12 @@
   ============================-->
 
 
-    <main id="main" class="">
-
         <section id="intro" class="wow bounceInUp">
-            <div class="container d-flex h-100 text-center">
-                <div class="row justify-content-center align-items-center w-100 mx-auto px-3">
+            <div class="container d-flex h-100 text-center" style="height:100vh;">
+                <div class="row justify-content-center align-items-center w-100 mx-auto px-1">
                     <!-- <div class="col-md-3"></div> -->
-                    <div class="col-md-6 col-sm-12 align-self-center col-overlay p-4 mx-auto" id="signinForm">
-                        <div class="h1 text-light">Login</div>
+                    <div class="col-md-6 col-sm-12 align-self-center col-overlay px-2 py-5 mx-auto" id="signinForm">
+                        <div class="h1 text-light font-weight-bold">Login</div>
                         <p class="lead text-light">Fill the form below</p>
                         <p class="lgerror lead text-dark font-weight-bold mt-2 bg-info text-center"></p>
                         <form class="form" method="POST" id="login-form">
@@ -94,11 +92,11 @@
                                     <div class="container text-center p-0">
                                         <div class="row w-100">
                                             <div class="col-1"></div>
-                                            <div class="col-2 w-100 text-right">
+                                            <div class="col-2 p-0">
                                                 <span class="input-group-addon"><i
-                                                        class="fa fa-id-badge fa-2x pt-2"></i></span>
+                                                        class="fa fa-id-badge fa-2x pt-1"></i></span>
                                             </div>
-                                            <div class="col-8 w-100">
+                                            <div class="col-8 p-0">
                                                 <input name="login_email" type="email" class="form-control rounded"
                                                     id="login_email" placeholder="Username">
                                             </div>
@@ -106,16 +104,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group my-2">
                                     <div class="input-group input-group-lg">
                                         <div class="container text-center p-0">
                                             <div class="row w-100">
                                                 <div class="col-1"></div>
-                                                <div class="col-2 w-100 text-right">
+                                                <div class="col-2 p-0">
                                                     <span class="input-group-addon"><i
-                                                            class="fa fa-lock fa-2x pt-2"></i></span>
+                                                            class="fa fa-lock fa-2x pt-1"></i></span>
                                                 </div>
-                                                <div class="col-8 w-100 ">
+                                                <div class="col-8 p-0">
                                                     <input name="login_password" type="password"
                                                         class="form-control rounded" id="login_password"
                                                         placeholder="Password">
@@ -127,7 +125,7 @@
                                 </div>
                             </div>
                             <input type="submit"
-                                class="login-btn btn btn-lg btn-outline-info btn-light text-info mt-3 mx-2">
+                                class="login-btn btn btn-md btn-outline-info btn-light text-info mt-2 mx-2">
                         </form>
                         <a class="btn btn-outline-dark btn-sm my-3" onclick="showSignUpForm()">Register for a new admin </a>
                     </div>
@@ -245,7 +243,6 @@
                 </div>
             </div>
         </section>
-    </main>
 
     <!--==========================
     Footer
