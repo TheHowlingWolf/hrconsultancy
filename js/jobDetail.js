@@ -57,8 +57,8 @@ var cvUpload = document.getElementById('cvUpload');
         var phone = cvUpload["phone"].value;
         var Resume = cvUpload["Resume"].files[0];
 
-        var filename = document.querySelector('#Resume').value;
-        var extension = filename.split('.').pop();
+        var resumeName = document.querySelector('#Resume').value;
+        var extension = resumeName.substring(resumeName.lastIndexOf('.') + 1);
         console.log(extension);
         var nResume;
         if(extension == 'mp3' || extension == 'aac' || extension == 'wmv' || extension == 'ooc' )
