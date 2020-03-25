@@ -44,13 +44,9 @@
 
     var cvUpload = document.getElementById('cvUpload');
 
-    document.getElementById('aResume').addEventListener('change', e => {
-        document.getElementById('aResumeLabel').innerHTML = e.target.files[0].name;
+    document.getElementById('Resume').addEventListener('change', e => {
+        document.getElementById('ResumeLabel').innerHTML = e.target.files[0].name;
 
-    })
-
-    document.getElementById('vResume').addEventListener('change', e => {
-        document.getElementById('vResumeLabel').innerHTML = e.target.files[0].name;
     })
 
     cvUpload.addEventListener('submit', async (e) => {
@@ -59,11 +55,19 @@
         var name = cvUpload["name"].value;
         var email = cvUpload["email"].value;
         var phone = cvUpload["phone"].value;
-        var AResume = cvUpload["aResume"].files[0];
-        var VResume = cvUpload["vResume"].files[0];
+        var Resume = cvUpload["aResume"].files[0];
 
-        videoResume = 'video-CV/' + Date.now() + email;
-        audioResume = 'audio-CV/' + Date.now() + email;
+        var filename = document.querySelector('#Resume').value;
+        var extension = filename.split('.').pop();
+
+        if(extension == '.mp3' || extension == '.aac' || extension == '.wmv' || extension == '.ooc' )
+            Resume = 'Audio-CV/' + Date.now().toString() + email;
+        else if (extension == '.mkv' || extension == '.mp4' || extension == '.mpeg' )
+            Resume = 'Audio-CV/' + Date.now().toString() + email;
+        else
+            console.log('Not Supported');
+        
+        console.log(Resume);
 
         var audioStorageRef = firebase.storage().ref(audioResume);
         var task1 = await audioStorageRef.put(AResume);
