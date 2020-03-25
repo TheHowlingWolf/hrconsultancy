@@ -10,7 +10,7 @@ if (jobView) {
                 console.log(doc.data());
                 jobView.innerHTML += `
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; ">
+                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; min-height:30rem;">
                             <div class="card-header font-weight-bold">${doc.data().title}</div>
                             <div class="card-body">
                               <h5 class="card-title">
@@ -24,7 +24,7 @@ if (jobView) {
                               <div class="card-footer"> 
                                 <div class="apply">
                                     <div class="details" style="font-size: 15px;">
-                                    ${doc.data().location}<br />,${new Date(doc.data().lastDate).toDateString()}<br />,${doc.data().position}
+                                    ${doc.data().location},<br />${new Date(doc.data().lastDate).toDateString()},<br />${doc.data().position}
                                     </div>
                                       <div class="text-right">
                                         <a href="#" class="ml-2 btn btn-md btn-light text-dark" onclick="viewDetails('${doc.id}')">View More</a>

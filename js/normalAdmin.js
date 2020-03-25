@@ -21,7 +21,7 @@ auth.onAuthStateChanged(user => {
                                 index += 1;
 
                                 await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
-                                    allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9 ml-auto ">
+                                    allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9">
                                     <div class="card text-white bg-info mb-3 " style="max-width:30rem; ">
                                         <div class="card-header font-weight-bold text-center">${doc.data().title}</div>
                                         <div class="card-body">
