@@ -44,38 +44,47 @@ db.collection('job').doc(s.jid).get().then(snapshot => {
 
 var cvUpload = document.getElementById('cvUpload');
 
-    document.getElementById('Resume').addEventListener('change', e => {
-        document.getElementById('ResumeLabel').innerHTML = e.target.files[0].name;
+document.getElementById('Resume').addEventListener('change', e => {
+    document.getElementById('ResumeLabel').innerHTML = e.target.files[0].name;
 
 })
 
-    cvUpload.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        document.getElementById('cvButton').disabled = true;
-        var name = cvUpload["name"].value;
-        var email = cvUpload["email"].value;
-        var phone = cvUpload["phone"].value;
-        var Resume = cvUpload["aResume"].files[0];
+cvUpload.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    document.getElementById('cvButton').disabled = true;
+    var name = cvUpload["name"].value;
+    var email = cvUpload["email"].value;
+    var phone = cvUpload["phone"].value;
+    var Resume = cvUpload["Resume"].files[0];
+    const uMessage = document.querySelector('#uploadMessage');
 
-        var filename = document.querySelector('#Resume').value;
-        var extension = filename.split('.').pop();
+    var resumeName = document.querySelector('#Resume').value;
+    var extension = resumeName.substring(resumeName.lastIndexOf('.') + 1);
+    console.log(extension);
+    var nResume;
+    if (extension == 'mp3' || extension == 'aac' || extension == 'wmv' || extension == 'ooc') {
+        nResume = 'resume-CV/' + 'Audio From: ' + email + ` ${(new Date).getDate()}` + "|" + `${(new Date).getMonth() + 1}` + "|" + `${(new Date).getYear()}`  + "." + extension;
+        Retype = "Audio";
+    }
+    else if (extension == 'mkv' || extension == 'mp4' || extension == 'mpeg') {
+        nResume = 'resume-CV/' + 'Video From: ' + email + ` ${(new Date).getDate()}` + "|" + `${(new Date).getMonth() + 1}` + "|" + `${(new Date).getYear()}` + "." + extension;
+        Retype = "Video";
+    }
+    else {
+        console.log('Not Supported');
+        document.getElementById('cvButton').disabled = false;
+        uMessage.classList.remove('d-none');
+        uMessage.classList.add('text-danger');
+        uMessage.innerHTML = "File type not supported";
+    }
 
-        if(extension == '.mp3' || extension == '.aac' || extension == '.wmv' || extension == '.ooc' )
-            Resume = 'Audio-CV/' + Date.now().toString() + email;
-        else if (extension == '.mkv' || extension == '.mp4' || extension == '.mpeg' )
-            Resume = 'Audio-CV/' + Date.now().toString() + email;
-        else
-            console.log('Not Supported');
-        
-        console.log(Resume);
 
-    var audioStorageRef = firebase.storage().ref(audioResume);
-    var task1 = audioStorageRef.put(AResume);
-    
-    document.getElementById('audioProgressBar').classList.remove('d-none');
-    document.getElementById('audioInput').classList.add('d-none');
-    let AProgressBar = document.getElementById('AprogressBar');
-    task1.on('state_changed', function (snapshot) {
+    var StorageRef = firebase.storage().ref(nResume);
+    var task = StorageRef.put(Resume);
+    document.getElementById('progressbar').classList.remove('d-none');
+    document.getElementById('ResumeInput').classList.add('d-none');
+    let AProgressBar = document.getElementById('UploadProgress');
+    task.on('state_changed', function (snapshot) {
 
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         AProgressBar.style.width = `${progress}%`
@@ -83,46 +92,37 @@ var cvUpload = document.getElementById('cvUpload');
         console.log('Upload is ' + progress + '% done');
 
     }, function (error) {
-        console.log("Error Uploading Audio");
+        uMessage.classList.remove('d-none');
+        uMessage.classList.add('text-danger');
+        uMessage.innerHTML = "Error Uploading File";
+        return;
+
     }, function () {
 
-        let videoStorageRef = firebase.storage().ref(videoResume)
-        let task2 = videoStorageRef.put(VResume)
-        document.getElementById('videoProgressBar').classList.remove('d-none');
-        document.getElementById('videoInput').classList.add('d-none');
-        let VProgressBar = document.getElementById('vprogressBar');
 
-        task2.on('state_changed', function (snapshot) {
+        uMessage.classList.remove('d-none');
+        uMessage.classList.add('text-success');
+        uMessage.innerHTML = "File Uploaded Successfully <br>Uploading form please wait...";
 
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            VProgressBar.style.width = `${progress}%`
-            VProgressBar.setAttribute("aria-valuenow", `${progress}`);
-            console.log('Upload is ' + progress + '% done');
+        db.collection('CV').add({
+            name: name,
+            email: email,
+            jid: s.jid,
+            phoneNo: phone,
+            Resume: nResume,
+            Retype: Retype
+        }).then(ref => {
+            cvUpload.reset();
+            window.location.assign('../index.html');
+        }).catch(err => console.log(JSON.stringify(err)));
 
-        }, function (error) {
-            console.log("Error Uploading Video");
-        }, function () {
-            db.collection('CV').add({
-                name: name,
-                email: email,
-                jid: s.jid,
-                phoneNo: phone,
-                audioResume: audioResume,
-                videoResume: videoResume
-            }).then(ref => {
-                cvUpload.reset();
-                window.location.assign('../index.html')
-            }).catch(err => console.log(JSON.stringify(err)));
-
-
-        });
     });
 
 
 
+
+
 })
-
-
 
 
 

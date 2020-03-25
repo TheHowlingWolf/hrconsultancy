@@ -82,12 +82,12 @@ function viewApplicantDetails(jid) {
     var applicantsDetail = document.getElementById('jobApplicantDetails');
     db.collection('CV').where('jid', '==', `${jid}`).get().then(snapshot => {
         snapshot.forEach(doc => {
-            applicantsDetail.innerHTML += `<tr>
-                            <td>${doc.data().name}</td>
-                            <td>${doc.data().email}</td>
-                            <td>${doc.data().phoneNo}</td>
-                            <td>  <button class="btn btn-info" onClick="downloadFile('${doc.data().audioResume}')"> Audio </button>  </td>
-                            <td><button class="btn btn-info" onClick="downloadFile('${doc.data().videoResume}')"> Video </button> </td>
+            applicantsDetail.innerHTML += `<tr class="text-center">
+                            <td class="align-self-center">${doc.data().name}</td>
+                            <td class="align-self-center">${doc.data().email}</td>
+                            <td class="align-self-center">${doc.data().phoneNo}</td>
+                            <td>  <a class="btn btn-sm btn-info text-light" onClick="downloadFile('${doc.data().Resume}')">See Resume </a>  </td>
+                            <td class="align-self-center"> ${doc.data().Retype} </td>
                         </tr>`
         })
     })
