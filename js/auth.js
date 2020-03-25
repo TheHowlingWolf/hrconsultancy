@@ -59,8 +59,6 @@ auth.onAuthStateChanged(user => {
     if (user) {
         if (flag === 0) {
 
-
-            // window.location.assign('../pages/admin.html');
             db.collection('UserProfile').where('uid', '==', user.uid).get().then((snapshot) => {
                 
                 var adminCheck = snapshot.docs[0].data().superAdminAccess;
