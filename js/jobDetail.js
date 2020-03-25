@@ -4,18 +4,18 @@
 
 // db.collection('UserProfile').where("uid", "==", `${user.uid}`).get().then(doc => {
 
-    var search = location.search.substring(1);
-    var s = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+var search = location.search.substring(1);
+var s = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
 
-    var jobHead = document.getElementById('jobHeader');
-    var jobTitle = document.getElementById('jobDetails');
-    console.log(s);
+var jobHead = document.getElementById('jobHeader');
+var jobTitle = document.getElementById('jobDetails');
+console.log(s);
 
-    db.collection('job').doc(s.jid).get().then(snapshot => {
-        jobDet = snapshot.data();
-        jobHead.innerHTML = `<h4 class="font-weight-bolder">${jobDet.title}</h4>`;
+db.collection('job').doc(s.jid).get().then(snapshot => {
+    jobDet = snapshot.data();
+    jobHead.innerHTML = `<h4 class="font-weight-bolder">${jobDet.title}</h4>`;
 
-        jobTitle.innerHTML = `   <div class="col-12 mt-4 mb-2"> <b>Qualification :</b> ${jobDet.qualification}</div>
+    jobTitle.innerHTML = `   <div class="col-12 mt-4 mb-2"> <b>Qualification :</b> ${jobDet.qualification}</div>
                             <div class="col-12 m-2">
 
                             <b>Experience:</b> ${jobDet.experience}
@@ -34,7 +34,7 @@
                             </div>
                             <button type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#myModal"  >Apply for this job</button>
                             `
-    })
+})
 
 
 
@@ -42,12 +42,12 @@
 
 
 
-    var cvUpload = document.getElementById('cvUpload');
+var cvUpload = document.getElementById('cvUpload');
 
     document.getElementById('Resume').addEventListener('change', e => {
         document.getElementById('ResumeLabel').innerHTML = e.target.files[0].name;
 
-    })
+})
 
     cvUpload.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -69,15 +69,39 @@
         
         console.log(Resume);
 
-        var audioStorageRef = firebase.storage().ref(audioResume);
-        var task1 = await audioStorageRef.put(AResume);
-        console.log(task1);
+    var audioStorageRef = firebase.storage().ref(audioResume);
+    var task1 = audioStorageRef.put(AResume);
+    
+    document.getElementById('audioProgressBar').classList.remove('d-none');
+    document.getElementById('audioInput').classList.add('d-none');
+    let AProgressBar = document.getElementById('AprogressBar');
+    task1.on('state_changed', function (snapshot) {
+
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        AProgressBar.style.width = `${progress}%`
+        AProgressBar.setAttribute("aria-valuenow", `${progress}`);
+        console.log('Upload is ' + progress + '% done');
+
+    }, function (error) {
+        console.log("Error Uploading Audio");
+    }, function () {
 
         let videoStorageRef = firebase.storage().ref(videoResume)
+        let task2 = videoStorageRef.put(VResume)
+        document.getElementById('videoProgressBar').classList.remove('d-none');
+        document.getElementById('videoInput').classList.add('d-none');
+        let VProgressBar = document.getElementById('vprogressBar');
 
-        let task2 = await videoStorageRef.put(VResume)
-        console.log(task2);
-        if (task2 && task1) {
+        task2.on('state_changed', function (snapshot) {
+
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            VProgressBar.style.width = `${progress}%`
+            VProgressBar.setAttribute("aria-valuenow", `${progress}`);
+            console.log('Upload is ' + progress + '% done');
+
+        }, function (error) {
+            console.log("Error Uploading Video");
+        }, function () {
             db.collection('CV').add({
                 name: name,
                 email: email,
@@ -89,9 +113,14 @@
                 cvUpload.reset();
                 window.location.assign('../index.html')
             }).catch(err => console.log(JSON.stringify(err)));
-        }
 
-    })
+
+        });
+    });
+
+
+
+})
 
 
 
