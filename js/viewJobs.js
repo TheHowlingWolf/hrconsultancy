@@ -10,7 +10,7 @@ if (jobView) {
                 console.log(doc.data());
                 jobView.innerHTML += `
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; ">
+                        <div class="card text-white bg-info mb-3" style="max-width: 20rem; min-height:30rem;">
                             <div class="card-header font-weight-bold">${doc.data().title}</div>
                             <div class="card-body">
                               <h5 class="card-title">
