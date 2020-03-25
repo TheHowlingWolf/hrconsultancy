@@ -12,7 +12,7 @@ site.addEventListener('submit', (e) => {
     //preventing default refresh
     e.preventDefault();
     console.log('submit');
-    flag=1;
+    flag = 1;
     //get user info
     const name = site['name'].value;
     const email = site['email'].value;
@@ -34,7 +34,7 @@ site.addEventListener('submit', (e) => {
                             phone: phone,
                             adminAccess: adminAccess,
                             superAdminAccess: false
-                        }).then(doc=>{
+                        }).then(doc => {
 
                             site.reset();
                             document.querySelector('#signinForm').classList.remove('d-none');
@@ -57,14 +57,21 @@ site.addEventListener('submit', (e) => {
 
 auth.onAuthStateChanged(user => {
     if (user) {
-        if (flag===0)
-            window.location.assign('../pages/admin.html');
-            if (adminCheck) {
-                window.location.assign('../pages/superadmin.html');
-            }
-            else {
-                window.location.assign('../pages/admin.html');
-            }
+        if (flag === 0) {
+
+
+            // window.location.assign('../pages/admin.html');
+            db.collection('UserProfile').where('uid', '==', user.uid).get().then((snapshot) => {
+                
+                var adminCheck = snapshot.docs[0].data().superAdminAccess;
+                if (adminCheck) {
+                    window.location.assign('../pages/superadmin.html');
+                }
+                else {
+                    window.location.assign('../pages/admin.html');
+                }
+            })
+        }
     }
 })
 
