@@ -51,12 +51,21 @@ document.getElementById('Resume').addEventListener('change', e => {
 
 cvUpload.addEventListener('submit', async (e) => {
     e.preventDefault();
-    document.getElementById('cvButton').disabled = true;
+    // document.getElementById('cvButton').disabled = true;
     var name = cvUpload["name"].value;
     var email = cvUpload["email"].value;
     var phone = cvUpload["phone"].value;
     var Resume = cvUpload["Resume"].files[0];
     const uMessage = document.querySelector('#uploadMessage');
+
+    if(Resume.size > 63000000){
+        document.getElementById('cvButton').disabled = false;
+        uMessage.classList.remove('d-none');
+        uMessage.classList.add('text-danger');
+        uMessage.innerHTML = "File size should be below 60 MB ";
+        return;
+    }
+    
 
     var resumeName = document.querySelector('#Resume').value;
     var extension = resumeName.substring(resumeName.lastIndexOf('.') + 1);
@@ -76,6 +85,7 @@ cvUpload.addEventListener('submit', async (e) => {
         uMessage.classList.remove('d-none');
         uMessage.classList.add('text-danger');
         uMessage.innerHTML = "File type not supported";
+        return;
     }
 
 
@@ -95,6 +105,7 @@ cvUpload.addEventListener('submit', async (e) => {
         uMessage.classList.remove('d-none');
         uMessage.classList.add('text-danger');
         uMessage.innerHTML = "Error Uploading File";
+        document.getElementById('cvButton').disabled = false;
         return;
 
     }, function () {
