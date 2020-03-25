@@ -1,7 +1,7 @@
 
 var nav = document.querySelector('.main-nav');
 var logout;
-if (window.location.pathname === "/" || window.location.pathname === "/#intro") {
+if (window.location.pathname === "/" || window.location.pathname==="/index.html" || window.location.pathname === "/#intro") {
     nav.innerHTML =
         `<ul>
         <li class="active"><a href="/#intro">Home</a></li>
