@@ -1510,6 +1510,8 @@ h6 {
   #testimonials .testimonial-item p {
     width: 80%;
   }
+
+  
 }
 
 @media (max-width: 991px) {
@@ -1561,11 +1563,11 @@ h6 {
   }
 
   #intro .container {
-    height: auto !important;
+    
   }
 
   #intro .intro-img {
-    width: 80%;
+    width: 100%;
   }
 
   #intro .intro-info {
