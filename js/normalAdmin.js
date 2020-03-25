@@ -86,8 +86,7 @@ function viewApplicantDetails(jid) {
                             <td>${doc.data().name}</td>
                             <td>${doc.data().email}</td>
                             <td>${doc.data().phoneNo}</td>
-                            <td>  <button class="btn btn-info" onClick="downloadFile('${doc.data().audioResume}')"> Audio </button>  </td>
-                            <td><button class="btn btn-info" onClick="downloadFile('${doc.data().videoResume}')"> Video </button> </td>
+                            <td>  <button class="btn btn-info" onClick="downloadFile('${doc.data().Resume}')"> ${doc.data().Retype} CV </button>  </td>
                         </tr>`
         })
     })

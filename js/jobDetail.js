@@ -60,13 +60,19 @@ var cvUpload = document.getElementById('cvUpload');
         var resumeName = document.querySelector('#Resume').value;
         var extension = resumeName.substring(resumeName.lastIndexOf('.') + 1);
         console.log(extension);
-        var nResume;
+        var nResume,Retype;
         if(extension == 'mp3' || extension == 'aac' || extension == 'wmv' || extension == 'ooc' )
+        {
             nResume = 'resume-CV/' +'Audio From: ' + email + ` ${(new Date).getDate()}`+"|" + `${(new Date).getMonth()+1}`+"|"+ `${(new Date).getYear()}`+"/" ;
+            Retype="Audio";
+        }
         else if (extension == 'mkv' || extension == 'mp4' || extension == 'mpeg' )
-        nResume = 'resume-CV/' +'Video From: ' + email + ` ${(new Date).getDate()}`+"|" + `${(new Date).getMonth()+1}`+"|"+ `${(new Date).getYear()}`+"/" ;
+        {
+            nResume = 'resume-CV/' +'Video From: ' + email + ` ${(new Date).getDate()}`+"|" + `${(new Date).getMonth()+1}`+"|"+ `${(new Date).getYear()}`+"/" ;
+            Retype="Video"
+        }
         else
-            console.log('Not Supported');
+            alert('Not Supported');
         
             var StorageRef = firebase.storage().ref(nResume);
             var task1 = StorageRef.put(Resume);
@@ -111,7 +117,8 @@ var cvUpload = document.getElementById('cvUpload');
                 email: email,
                 jid: s.jid,
                 phoneNo: phone,
-                Resume: Resume
+                Resume: Resume,
+                Retype: Retype
             }).then(ref => {
                 cvUpload.reset();
                 window.location.assign('../index.html')
