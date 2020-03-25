@@ -32,7 +32,7 @@ auth.onAuthStateChanged(user => {
                         responsiblity: jresponsibility
                     }).then(ref => {
                         console.log(ref.id);
-                        window.location.assign('../index.html')
+                        window.location.assign('/pages/login.html')
                     })
                 })
             }

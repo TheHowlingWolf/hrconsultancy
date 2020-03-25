@@ -124,7 +124,7 @@ cvUpload.addEventListener('submit', async (e) => {
             Retype: Retype
         }).then(ref => {
             cvUpload.reset();
-            window.location.assign('../index.html');
+            window.location.assign('/');
         }).catch(err => console.log(JSON.stringify(err)));
 
     });
