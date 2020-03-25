@@ -24,7 +24,7 @@ if (jobView) {
                               <div class="card-footer"> 
                                 <div class="apply">
                                     <div class="details" style="font-size: 15px;">
-                                    ${doc.data().location}<br />,${new Date(doc.data().lastDate).toDateString()}<br />,${doc.data().position}
+                                    ${doc.data().location},<br />${new Date(doc.data().lastDate).toDateString()},<br />${doc.data().position}
                                     </div>
                                       <div class="text-right">
                                         <a href="#" class="ml-2 btn btn-md btn-light text-dark" onclick="viewDetails('${doc.id}')">View More</a>
