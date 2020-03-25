@@ -13,6 +13,7 @@ if (window.location.pathname === "/" || window.location.pathname === "/#intro") 
         </ul>`;
 }
 
+console.log(window.location.pathname);
 if (window.location.pathname === "/#about" ) {
     nav.innerHTML =
         `<ul>
@@ -21,6 +22,17 @@ if (window.location.pathname === "/#about" ) {
         <li><a href="/pages/services.html">Services</a></li>
         <li><a href="/pages/openings.html">Current Opennings</a></li>
         
+        <li><a href="/#footer">Contact Us</a></li>
+        </ul>`;
+}
+
+if (window.location.pathname === "/pages/jobDetail.html" ) {
+    nav.innerHTML =
+        `<ul>
+        <li><a href="/#intro">Home</a></li>
+        <li ><a href="/#about">About Us</a></li>
+        <li><a href="/pages/services.html">Services</a></li>
+        <li><a href="/pages/openings.html">Current Opennings</a></li>
         <li><a href="/#footer">Contact Us</a></li>
         </ul>`;
 }
