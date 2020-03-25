@@ -1,3 +1,5 @@
+//auth.js
+
 function showSignUpForm() {
     document.getElementById('signupForm').classList.remove('d-none');
     document.getElementById('signinForm').classList.add('d-none');
@@ -46,6 +48,7 @@ site.addEventListener('submit', (e) => {
                 });
         }
         else {
+            document.querySelector('.lgerror').innerHTML = `Invalid Access Key`;
             console.log("Invalid Access Key");
         }
     })
@@ -55,11 +58,13 @@ site.addEventListener('submit', (e) => {
 auth.onAuthStateChanged(user => {
     if (user) {
         if (flag===0)
-            window.location.assign('./admin.html');
-        else
-        {
-            
-        }
+            window.location.assign('../pages/admin.html');
+            if (adminCheck) {
+                window.location.assign('../pages/superadmin.html');
+            }
+            else {
+                window.location.assign('../pages/admin.html');
+            }
     }
 })
 
