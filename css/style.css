@@ -619,7 +619,12 @@ h6 {
   padding: 60px 0 40px 0;
 }
 
+.sig-box{
+  min-height: 12rem !important;
+}
+
 #services .box {
+  min-height: 25rem;
   padding: 30px;
   position: relative;
   overflow: hidden;
