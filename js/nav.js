@@ -14,7 +14,7 @@ if (window.location.pathname === "/" || window.location.pathname === "/#intro") 
 }
 
 console.log(window.location.pathname);
-if (window.location.pathname === "/#about" ) {
+if (window.location.pathname === "/#about") {
     nav.innerHTML =
         `<ul>
         <li><a href="/#intro">Home</a></li>
@@ -26,7 +26,7 @@ if (window.location.pathname === "/#about" ) {
         </ul>`;
 }
 
-if (window.location.pathname === "/pages/jobDetail.html" ) {
+if (window.location.pathname === "/pages/jobDetail.html") {
     nav.innerHTML =
         `<ul>
         <li><a href="/#intro">Home</a></li>
@@ -127,27 +127,32 @@ if (window.location.pathname === "/pages/adminPost.html") {
 }
 
 //logo change
-window.addEventListener("scroll",(e)=>{
-    
-    cur= document.querySelector('#header').offsetHeight
-     if(window.location.href !== 'https://hrconsultant.co.in/' || window.location.href !== 'https://hrconsultant.co.in')
-    {
-        if(window.scrollY > 0)
-            document.querySelector('#logohead').src = "../img/logoScroll.png" 
-        else if (window.scrollY <= 0+cur)
-            document.querySelector('#logohead').src = "../img/logo.png"
-        else
-        console.log('hi');
-    }
-    else
-    {
-        if(window.scrollY > 0+cur)
-            document.querySelector('#logohead').src = "./img/logoScroll.png" 
-        else if (window.scrollY <= 0+cur)
-            document.querySelector('#logohead').src = "./img/logo.png"
-        else
-        console.log('hi');
-    }
-    
-})
+// window.addEventListener("scroll", (e) => {
+//     console.log(window.scrollY)
+//     cur = document.querySelector('#header').offsetHeight;
+//     if (window.location.href !== 'https://hrconsultant.co.in/' || window.location.href !== 'https://hrconsultant.co.in') {
+//         if (window.scrollY > 0) {
+//             console.log("logolight")
+//             document.querySelector('#logohead').src = "../img/logoScroll.png"
+//         }
+//         else if (window.scrollY <= 0 + cur){
+//             document.querySelector('#logohead').src = "../img/logo.png"
+//         }
+//         else
+//             console.log('hi');
+//     }
+//     else {
+//         if (window.scrollY > 0 + cur) {
+//             console.log("logolight")
+//             document.querySelector('#logohead').src = "./img/logoScroll.png"
+//         }
+//         else if (window.scrollY <= 0 + cur) {
+//             console.log("logoDark")
+//             document.querySelector('#logohead').src = "./img/logo.png"
+//         }
+//         else
+//             console.log('hi');
+//     }
+
+// })
 

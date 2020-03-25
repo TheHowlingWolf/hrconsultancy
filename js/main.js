@@ -29,14 +29,20 @@
   // Header scroll class
   $(window).scroll(function() {
     if ($(this).scrollTop() > 100) {
+      $('#logohead').attr("src", "../img/logoScroll.png" )
       $('#header').addClass('header-scrolled');
+      
+
     } else {
+      $('#logohead').attr("src", "../img/logo.png" );
       $('#header').removeClass('header-scrolled');
     }
   });
 
   if ($(window).scrollTop() > 100) {
+    $('#logohead').attr("src", "../img/logoScroll.png" )
     $('#header').addClass('header-scrolled');
+
   }
 
   // Smooth scroll for the navigation and links with .scrollto classes
