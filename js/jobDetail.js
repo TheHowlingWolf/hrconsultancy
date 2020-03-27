@@ -10,9 +10,10 @@ var s = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '
 var jobHead = document.getElementById('jobHeader');
 var jobTitle = document.getElementById('jobDetails');
 console.log(s);
-
+let jobLastDate;
 db.collection('job').doc(s.jid).get().then(snapshot => {
     jobDet = snapshot.data();
+    jobLastDate=jobDet.lastDate;
     jobHead.innerHTML = `<h4 class="font-weight-bolder">${jobDet.title}</h4>`;
 
     jobTitle.innerHTML = `   <div class="col-12 mt-4 mb-2"> <b>Qualification :</b> ${jobDet.qualification}</div>
@@ -51,7 +52,7 @@ document.getElementById('Resume').addEventListener('change', e => {
 
 cvUpload.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // document.getElementById('cvButton').disabled = true;
+    document.getElementById('cvButton').disabled = true;
     var name = cvUpload["name"].value;
     var email = cvUpload["email"].value;
     var phoneNum = cvUpload["phone"].value;
@@ -69,6 +70,19 @@ cvUpload.addEventListener('submit', async (e) => {
 
     var Resume = cvUpload["Resume"].files[0];
     const uMessage = document.querySelector('#uploadMessage');
+let f=1;
+    if(new Date(Date.now())  > new Date(jobLastDate) ){
+        let x = prompt("Last date to register has already passed. Type YES if you still want to submit the Resume.");
+        if(x==="YES"){
+            f=1
+        }
+        else{
+            
+            document.getElementById('cvButton').disabled = false;
+            return;
+        }
+    }
+
 
     if(Resume.size > 63000000){
         document.getElementById('cvButton').disabled = false;
