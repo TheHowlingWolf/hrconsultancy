@@ -19,6 +19,7 @@
 
   <!-- Bootstrap CSS File -->
   <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/intTelInput.css">
 
   <!--Font Awesome CDN-->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -37,6 +38,13 @@
   <link href="../css/style.css" rel="stylesheet">
 
 </head>
+<style>
+  .iti-flag {background-image: url("path/to/flags.png");}
+ 
+ @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+   .iti-flag {background-image: url("path/to/flags@2x.png");}
+ }
+</style>
 
 <body>
   <!--==========================
@@ -123,8 +131,10 @@
                   </div>
                   <div class=" form-group">
                     <label for="phone" class="">Phone No. </label>
-                    <input type="number" name="phone" class="form-control " id="phone" required placeholder="Your phone"
+                    
+                      <input type="tel" name="phone" class="form-control " id="phone" required placeholder="Your phone"
                       min="1000000000" max="9999999999" />
+                    
                     <div class="validation"></div>
                   </div>
                   <div class=" form-group">
@@ -284,6 +294,21 @@
   <script src="../contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="../js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    intlTelInput(input, {
+        initialCountry: "auto",
+        geoIpLookup: function(success, failure) {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                success(countryCode);
+            });
+        },
+        utilsScript: "../js/utils.js"
+    });
+    </script>
   <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
   <script src="../js/jobDetail.js"></script>
