@@ -133,7 +133,7 @@
                     <label for="phone" class="">Phone No. </label>
                     
                       <input type="tel" name="phone" class="form-control " id="phone" required placeholder="Your phone"
-                      min="1000000000" max="9999999999" />
+                       />
                     
                     <div class="validation"></div>
                   </div>
@@ -298,6 +298,7 @@
   <script src="../js/intlTelInput.min.js"></script>
   <script>
     var input = document.querySelector("#phone");
+
     intlTelInput(input, {
         initialCountry: "auto",
         geoIpLookup: function(success, failure) {

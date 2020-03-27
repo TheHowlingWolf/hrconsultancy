@@ -29,7 +29,8 @@ auth.onAuthStateChanged(user => {
                         qualification: jqualification,
                         experience: jexperience,
                         address: jaddress,
-                        responsiblity: jresponsibility
+                        responsiblity: jresponsibility,
+                        uploadTime:Date.now()
                     }).then(ref => {
                         console.log(ref.id);
                         window.location.assign('/pages/login.html')

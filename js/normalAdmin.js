@@ -20,7 +20,7 @@ auth.onAuthStateChanged(user => {
                                 console.log(doc.data());
                                 index += 1;
 
-                                await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
+                                await db.collection('CV').where('jid', '==', `${doc.id}`).orderBy('uploadTime').get().then(async documents => {
                                     allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="card text-white bg-info mb-3 " style="max-width: 20rem; min-height:15rem;">
                                         <div class="card-header font-weight-bold text-center">${doc.data().title}</div>
@@ -80,7 +80,8 @@ function viewApplicantDetails(jid) {
     document.getElementById('viewApplicants').classList.add('d-none');
     document.getElementById('viewApplicantsDetails').classList.remove('d-none');
     var applicantsDetail = document.getElementById('jobApplicantDetails');
-    db.collection('CV').where('jid', '==', `${jid}`).get().orderBy("uploadTime").then(snapshot => {
+    db.collection('CV').where('jid', '==', `${jid}`).orderBy("uploadTime").get().then(snapshot => {
+        
         snapshot.forEach(doc => {
             applicantsDetail.innerHTML += `<tr class="text-left">
                             <td class="align-self-center">${doc.data().name}</td>
