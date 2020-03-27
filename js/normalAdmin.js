@@ -21,8 +21,8 @@ auth.onAuthStateChanged(user => {
                                 index += 1;
 
                                 await db.collection('CV').where('jid', '==', `${doc.id}`).get().then(async documents => {
-                                    allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-9">
-                                    <div class="card text-white bg-info mb-3 " style="max-width:30rem; ">
+                                    allJobApplicants.innerHTML += ` <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card text-white bg-info mb-3 " style="max-width: 20rem; min-height:15rem;">
                                         <div class="card-header font-weight-bold text-center">${doc.data().title}</div>
                                         <div class="card-body">
                                             <p class="card-text">
@@ -82,7 +82,7 @@ function viewApplicantDetails(jid) {
     var applicantsDetail = document.getElementById('jobApplicantDetails');
     db.collection('CV').where('jid', '==', `${jid}`).get().then(snapshot => {
         snapshot.forEach(doc => {
-            applicantsDetail.innerHTML += `<tr class="text-center">
+            applicantsDetail.innerHTML += `<tr class="text-left">
                             <td class="align-self-center">${doc.data().name}</td>
                             <td class="align-self-center">${doc.data().email}</td>
                             <td class="align-self-center">${doc.data().phoneNo}</td>
