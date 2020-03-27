@@ -121,7 +121,8 @@ cvUpload.addEventListener('submit', async (e) => {
             jid: s.jid,
             phoneNo: phone,
             Resume: nResume,
-            Retype: Retype
+            Retype: Retype,
+            uploadTime:Date.now()
         }).then(ref => {
             cvUpload.reset();
             window.location.assign('../index.html');

@@ -80,7 +80,7 @@ function viewApplicantDetails(jid) {
     document.getElementById('viewApplicants').classList.add('d-none');
     document.getElementById('viewApplicantsDetails').classList.remove('d-none');
     var applicantsDetail = document.getElementById('jobApplicantDetails');
-    db.collection('CV').where('jid', '==', `${jid}`).get().then(snapshot => {
+    db.collection('CV').where('jid', '==', `${jid}`).get().orderBy("uploadTime").then(snapshot => {
         snapshot.forEach(doc => {
             applicantsDetail.innerHTML += `<tr class="text-center">
                             <td class="align-self-center">${doc.data().name}</td>
