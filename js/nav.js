@@ -108,7 +108,7 @@ if (window.location.pathname === "/pages/superAdminPost.html") {
 if (window.location.pathname === "/pages/admin.html") {
     nav.innerHTML =
         `<ul>
-        <li class="active"><a href="/pages/superadmin.html">Home</a></li>v
+        <li class="active"><a href="/pages/superadmin.html">Home</a></li>
         <li><a href="/pages/adminPost.html">Post A Job</a></li>
         <li><a href="" class="logout">Logout</a></li>
         </ul>`;

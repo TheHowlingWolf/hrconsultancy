@@ -125,7 +125,7 @@ cvUpload.addEventListener('submit', async (e) => {
             uploadTime:Date.now()
         }).then(ref => {
             cvUpload.reset();
-            window.location.assign('../index.html');
+            window.location.assign('/');
         }).catch(err => console.log(JSON.stringify(err)));
 
     });

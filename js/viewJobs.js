@@ -16,7 +16,7 @@ if (jobView) {
                               <h5 class="card-title">
                                 <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline"
                                     style="color: #3fcdc7;"></i></div>
-                                  HR CONSULTANCY
+                                  HR Consultant
                               </h5>
                               <p class="card-text">
                                 <span class="badge bg-light text-info">${doc.data().type}</span>

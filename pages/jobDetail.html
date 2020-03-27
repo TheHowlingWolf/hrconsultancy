@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>HR consultancy</title>
+  <title>HR Consultant</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -19,6 +19,7 @@
 
   <!-- Bootstrap CSS File -->
   <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/intlTelInput.css">
 
   <!--Font Awesome CDN-->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -37,6 +38,13 @@
   <link href="../css/style.css" rel="stylesheet">
 
 </head>
+<style>
+  .iti-flag {background-image: url("../img/flags.png");}
+ 
+ @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+   .iti-flag {background-image: url("../img/flags@2x.png");}
+ }
+</style>
 
 <body>
   <!--==========================
@@ -47,10 +55,9 @@
     <div id="topbar">
       <div class="container">
         <div class="social-links">
-          <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-          <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-          <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-          <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+          <a class="twitter" href="https://twitter.com/HRConsultant10" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a class="facebook" href="https://www.facebook.com/hrconsultant2020" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a class="linkedin" href="https://www.linkedin.com/company/thehrconsultant/about/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
@@ -60,7 +67,7 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h4 class="text-light font-weight-bold mt-2"><a href="#intro" class="scrollto"><span>HR
-                            CONSULTANCY</span></a></h4> -->
+                            Consultant</span></a></h4> -->
         <a href="#header" class="scrollto"><img src="../img/logo.png" alt="" class="img-fluid" id="logohead"></a>
       </div>
 
@@ -124,8 +131,10 @@
                   </div>
                   <div class=" form-group">
                     <label for="phone" class="">Phone No. </label>
-                    <input type="number" name="phone" class="form-control " id="phone" required placeholder="Your phone"
+                    
+                      <input type="tel" name="phone" class="form-control " id="phone" required placeholder="Your phone"
                       min="1000000000" max="9999999999" />
+                    
                     <div class="validation"></div>
                   </div>
                   <div class=" form-group">
@@ -182,12 +191,12 @@
         <div class="col-sm-12 col-md-8 col-lg-7">
           <h6>Terms And Policy</h6>
           <p class="text-justify">By using this website, you understand the information being presented is provided for
-            informational purposes only and agree to our Terms of Use and Privacy Policy. HR Consultancy relies on
+            informational purposes only and agree to our Terms of Use and Privacy Policy. HR Consultant relies on
             information
             from various sources believed to be reliable, including clients and third party vendors, but cannot
             guarantee the accuracy and completeness of that information.
 
-            HR Consultancy's financial advisory and planning services, provided to investors who become clients pursuant
+            HR Consultant's financial advisory and planning services, provided to investors who become clients pursuant
             to a
             written agreement and payment of service fee are designed to aid our clients in preparing for their
             financial futures and allowing them to personalise their assumptions for their portfolios.
@@ -197,8 +206,8 @@
             for informational and illustrative purposes, and may not reflect actual future performance.
 
 
-            © The brand name HR Consultancy, the assets on this website and other trademarked content is owned by HR
-            Consultancy
+            © The brand name HR Consultant, the assets on this website and other trademarked content is owned by HR
+            Consultant
             Resources Private Limited.</p>
         </div>
 
@@ -249,10 +258,9 @@
 
         <div class="col-md-4 col-sm-6">
           <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a class="facebook" href="https://www.facebook.com/hrconsultant2020" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="twitter" href="https://twitter.com/HRConsultant10" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/company/thehrconsultant/about/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a></li>
           </ul>
         </div>
       </div>
@@ -286,6 +294,21 @@
   <script src="../contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="../js/intlTelInput.min.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    intlTelInput(input, {
+        initialCountry: "auto",
+        geoIpLookup: function(success, failure) {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                success(countryCode);
+            });
+        },
+        utilsScript: "../js/utils.js"
+    });
+    </script>
   <script src="../js/main.js"></script>
   <script src="../js/firebase.js"></script>
   <script src="../js/jobDetail.js"></script>
