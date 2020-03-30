@@ -55,7 +55,19 @@ cvUpload.addEventListener('submit', async (e) => {
     document.getElementById('cvButton').disabled = true;
     var name = cvUpload["name"].value;
     var email = cvUpload["email"].value;
-    var phone = cvUpload["phone"].value;
+    var phoneNum = cvUpload["phone"].value;
+    var phoneExt = document.querySelector('.iti__selected-flag').title.split(' ').pop()
+    var phone;
+    if(Number(phone) == NaN && (phone.length != 10))
+    {
+        uMessage.innerHTML = "Please Enter A Valid Phone Number";
+        return;
+    }
+    else
+    {
+        phone=phoneExt+"-"+phoneNum;
+    }
+
     var Resume = cvUpload["Resume"].files[0];
     const uMessage = document.querySelector('#uploadMessage');
 let f=1;
